@@ -16,45 +16,33 @@
                 let display = (input) => this.input.value += input;
                 let clear = () => this.input.value = '';
                 let del = () => this.input.value = this.input.value.slice(0,-1);
-                let enter = () => this.input.value = eval(this.input.value);
 
                     if(classe('btn__num')) {display(elemento.innerText);}
                     if(classe('btn__cle')) {clear();}
                     if(classe('btn__del')) {del();}
-                    if(classe('btn__equ')) {this.input.value? enter():alert('Calculadora vazia.')}
+                    if(classe('btn__equ')) {this.validador();}
             })
+        };
+
+        this.validador = () => {                         // Valida e Executa
+
+            try {                                        // Tente...
+                let conta = eval(this.input.value);      // Conta recebe o cálculo...
+                if(!conta){                              // Se a conta receber false...
+                    this.input.value = 'Empty';           // Alerte erro e retorne.
+                    return
+                }
+                this.input.value = conta;                // Se passar, o visor recebe o calculo.
+            } catch(e) {                                 // Se houver outro tipo de erro...
+                this.input.value = 'Error';              // Alerte erro e retorne.
+                return
+            }
+
         };
     };
     const calculadora = new Calculadora();
     calculadora.inicia();
-    
+
 })();
-
-
-    // calculadora = {
-    //     input: document.querySelector('.input'),                                           
-
-    //     inicia(){                                                                           
-
-    //     document.addEventListener('click', (e) => {                                      // Tracking do Click
-            
-    //         let elemento = e.target;   
-    //         let classe = (nome) => elemento.classList.contains(nome);
-    //         let display = (input) => this.input.value += input;
-    //         let clear = () => this.input.value = ''; 
-    //         let del = () => this.input.value = this.input.value.slice(0, -1);           // mostra input (menos) último caráctere
-    //         let enter = () => this.input.value = eval(this.input.value);                // Executa o que estiver dentro.
-                                    
-    //             if(classe('btn__num')) {display(elemento.innerText)}
-    //             if(classe('btn__cle')) {clear()}
-    //             if(classe('btn__del')) {del()}
-    //             if(classe('btn__equ')) {this.input.value? enter():alert('Digite algo.')}
-
-    //     })  
-
-    //     },
-
-    // }
-    // calculadora.inicia();
 
 
