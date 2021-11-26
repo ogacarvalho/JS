@@ -21,4 +21,16 @@ let strings = 'Gabriel, Felipe, Carvalho, Paula, Milly, Eduardo';
 let organizando = strings.split(', ');                                   // Remove elementos indesejados (, ) e concatena.
 
 
+//Concatenando Arrays
+
+//Método comum (concat (..))
+let a1 = [0,1,2,3];
+let a2 = [4,5,6,7];
+let a3 = a1.concat(a2, [8,9,10], 'Gabriel');
+
+//Spread Operator (...)
+let a4 = [...a3];
+
+
+
 
