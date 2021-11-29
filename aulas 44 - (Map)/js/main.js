@@ -1,3 +1,4 @@
+
 /* Método Map
 Essa função extremamente poderosa, possui a mesma base do Filter, porém o filter possui um retorno booleano, enquanto o Map não, o filter irá dizer se há um item com aquela condicional ou não, e irá retornar o item que atende a condicional solicitada pelo programador.
 
@@ -24,17 +25,39 @@ const pessoas = [
     { nome: 'Josef', idade: 26},    
 ];
 
-// Retorne apenas uma string com o nome da pessoa...
-mapa = pessoas.map(objeto => objeto.nome);
 
-// Delete a chave nome: do objeto.
-mapa = pessoas.map( (objeto) => {         //Opção 1. Deletar o objeto nome.
-    delete objeto.nome;
+// // Retorne apenas uma string com o nome da pessoa...
+// mapa = pessoas.map(objeto => objeto.nome);
+
+
+// //Retorne apenas a chave idade.
+
+// //Opção 1
+// mapa = pessoas.map( (objeto) => {              //Deletar outras chaves e retornar o objeto.
+//     delete objeto.nome;
+//     return objeto;
+// });
+
+
+// //Opção 2                           ( {Expressão} )
+// mapa = pessoas.map( objeto => ({idade: objeto.idade}) );  //Criar um novo objeto "idade" que recebe o valor idade.
+
+
+
+//Adicione uma chave de "id" em cada objeto;
+
+//Modo Não-Seguro - (Alteração Array Raiz)
+pessoas.map((objeto, indice) => { 
+    objeto.id =  indice;                
     return objeto;
 });
 
-mapa = pessoas.map( (objeto) => {        //Opção 2. Cria um novo objeto {} <- lembrar das chaves...
-    return { idade: objeto.idade };      //... com a nova configuração.
+//Modo Seguro
+let map;
+map = pessoas.map((objeto, indice) => {            //Criamos uma variável que receberá uma cópia modificada do array raiz.
+    const novo = {...objeto};                      //Dessa forma evitamos a modificação do array raiz.
+    novo.id = indice;
+    return novo;
 });
 
-console.log(mapa);
+
