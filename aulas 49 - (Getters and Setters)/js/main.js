@@ -35,5 +35,6 @@ function _produto(exemplo) {               // Produto recebe parâmetro 'exemplo
 }
 const oproduto = _produto('Chocolate');
 oproduto.nome = 'Outra coisa';
+console.log(oproduto.nome)
 
 
