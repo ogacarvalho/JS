@@ -28,7 +28,7 @@ let selecao = (digitos) => {
     digitos = digitos.slice(0,11);
     return digitos.replaceAll('.', '');
 };
-let input = '456.260.598.73';
+let input = '456.260.598-73';
 let CPF = selecao(input);
 
 const calculo1 = (documento) => {
@@ -58,6 +58,7 @@ let primeiroCalculo = calculo1(CPF);
 let somando = primeiroCalculo.reduce((acumulador, valor) => {
     return acumulador += valor;
 });
+// Por padrão o acumulador, assume o valor do primeiro índice.
 
 let formula = (valor) => 11 - (valor % 11);
 let primeiroResultado = formula(somando);
