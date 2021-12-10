@@ -25,10 +25,12 @@ Para cada laço, fazer uma multiplicação dinâmica.
 
 */
 let selecao = (digitos) => {
-    digitos = digitos.slice(0,11);
-    return digitos.replaceAll('.', '');
+    digitos = digitos.replace(/\D+/g,'');
+    digitos = digitos.slice(0,-2);
+    return digitos
 };
-let input = '456.260.598-73';
+
+let input = '157.731.888-99';
 let CPF = selecao(input);
 
 const calculo1 = (documento) => {
@@ -60,7 +62,11 @@ let somando = primeiroCalculo.reduce((acumulador, valor) => {
 });
 // Por padrão o acumulador, assume o valor do primeiro índice.
 
-let formula = (valor) => 11 - (valor % 11);
+let formula = (valor) => {
+    let formula = 11 - (valor % 11);
+    if(formula > 9){ return 0}
+    return formula;
+};
 let primeiroResultado = formula(somando);
 let CPF2 = selecao(input) + primeiroResultado;
 
@@ -76,8 +82,7 @@ let segundoResultado = formula(somando2);
 let cpfBruto = CPF2 + segundoResultado;
 
 let convert = (input) => {
-    input = input.replaceAll('.', '');
-    input = input.replaceAll('-','');
+    input = input.replace(/\D+/g,'');
     return input;
 }
 
@@ -87,4 +92,4 @@ let validador = (original, resultado) => original === resultado;
 
 let teste = validador(cpfOriginal, cpfBruto);
 
-console.log(teste);
+console.log(teste? 'CPF Válido': 'CPF Inválido');
