@@ -7,8 +7,8 @@
 
 
 //Função recursiva
-const loop = (max) => {           //Parâmetro
-    if(max > 10) return;          //Se o parâmetro for maior que 10, retorne.
+const loop = (max, limite) => {   //Parâmetro
+    if(max > 100) return;         //Se o parâmetro for maior que 100, retorne.
     max++;                        //Se não, incremente-o.
     console.log(max);             //Mostre aonde estamos...
     loop(max);                    //Execute a função novamente.
