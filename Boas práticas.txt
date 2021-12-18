@@ -53,6 +53,9 @@ Objetos
 • Para modificar as suas propriedades use Object.defineProperty( .. )
 • Quando simplesmente coloca um objeto em outra variável você está apenas criando um novo link para o mesmo endereço de memória Existem formas corretas de copiar objetos {...objeto}.
 
+Funções
+• Sempre que precisar executar múltiplas funções respeitando uma ordem de execução, considere o Promise().
+
 Array
 • É possível transformar Strings em Arrays  e aplicar funções facilmente com Array.from.
 
@@ -67,3 +70,6 @@ Busque criar as validações sempre antes do código, pois aumenta a performance
 
 Formulários
 Sempre que for criar um formulário lembre-se da aula do professor, lá tem muitas dicas.
+
+Erros
+Sempre que capturar um erro use new Error( .. ) para mostrá-lo.
