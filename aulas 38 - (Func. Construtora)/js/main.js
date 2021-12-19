@@ -23,5 +23,3 @@ function Pessoa(nome,sobrenome){
 }
 
 const pessoa = new Pessoa('Gabriel', 'Carvalho');
-console.log(pessoa.ID);
-

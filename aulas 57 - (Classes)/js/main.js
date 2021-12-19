@@ -1,5 +1,6 @@
+(() => {
 
-/* Classes - Fazem as mesmíssimas coisas que uma função construtora, embora de uma maneira diferente.
+  /* Classes - Fazem as mesmíssimas coisas que uma função construtora, embora de uma maneira diferente.
 O mais legal das classes é que elas automaticamente tornam os métodos prototypes, sem ter que "atrela-los",
 ... bastando adicioná-los como métodos na função construtora.
 */
@@ -16,6 +17,6 @@ class Pessoa {
 }
 
 const teste = new Pessoa('Teste', 'da Silva');
-teste.metodo();
 
 
+})();
