@@ -54,7 +54,7 @@ Objetos
 • Quando simplesmente coloca um objeto em outra variável você está apenas criando um novo link para o mesmo endereço de memória Existem formas corretas de copiar objetos {...objeto}.
 
 Funções
-• Sempre que precisar executar múltiplas funções respeitando uma ordem de execução, considere o Promise().
+• Sempre que precisar executar múltiplas funções de modo ordenado, considere Promises( .. ) com Async e Await envoltos em um Try Catch.
 
 Array
 • É possível transformar Strings em Arrays  e aplicar funções facilmente com Array.from.
