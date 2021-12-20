@@ -49,11 +49,12 @@ Variáveis
 A variável aponta para o endereço na memória e o endereço da memória aponta para o valor.
 
 Objetos
+• Funções dentro de objetos são métodos, e métodos não precisam do "function .."
 • Para configurar a entrada e saída de um método use: getters e setters
 • Para modificar as suas propriedades use Object.defineProperty( .. )
 • Quando simplesmente coloca um objeto em outra variável você está apenas criando um novo link para o mesmo endereço de memória Existem formas corretas de copiar objetos {...objeto}.
 
-Funções
+Funções em Ordem Específica
 • Sempre que precisar executar múltiplas funções de modo ordenado, considere Promises( .. ) com Async e Await envoltos em um Try Catch.
 
 Array
@@ -73,3 +74,5 @@ Sempre que for criar um formulário lembre-se da aula do professor, lá tem muit
 
 Erros
 Sempre que capturar um erro use new Error( .. ) para mostrá-lo.
+
+
