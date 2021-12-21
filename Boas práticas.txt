@@ -2,6 +2,7 @@ Boas práticas
 As boas práticas são fundamentais para manter a saúde do seu código, tornando sua manutenção simples e seu perfil de programador elevado.
 
 • Nunca deixe seu código em escopo global, crie funções.
+• O throw new Error('..') irá lançar o erro diretamente para o catch(..).
 • Sempre que precisar criar chaves privadas use o Symbol.
 • Sempre desenvolva o seu código de modo particionado.
 • Programar em inglês
@@ -23,6 +24,7 @@ As boas práticas são fundamentais para manter a saúde do seu código, tornand
 Dicas
 Informações que poderão ser úteis. 
 
+• Quando trabalhar com AJAX ou Requisições (XML), considere o uso de Fetch(), torna o trabalho ainda mais simples.
 • Quando trabalhar com objetos ou arrays considerar o uso de atrib. por desestruturação e estruturação de dados com o uso de new Map( ).
 • Só use o innerHTML se seu código contiver tags html se não, use o innerText.
 • Para iterar objetos use for in para iterar arrays de modo semântico e simples for of para aplicar funções em elementos de um array forEach.
@@ -73,6 +75,7 @@ Formulários
 Sempre que for criar um formulário lembre-se da aula do professor, lá tem muitas dicas.
 
 Erros
-Sempre que capturar um erro use new Error( .. ) para mostrá-lo.
+• Sempre que capturar um erro use new Error( .. ) para mostrá-lo.
+• Para mostrar erros corretamente, use console.warn('..') ou console.error('..');
 
 
