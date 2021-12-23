@@ -1,0 +1,30 @@
+Instalação Webpack - Boilerplate (Compatibilizador de arquivos)
+
+! O index.html deve sempre ser referenciado ao script bundle.js
+! O único arquivo que podemos mexer na pasta publica será o index.html, o resto é só no código fonte.
+> pasta (src)
+! Se quiser que o script seja rodado durante um tempo determinado:
+> timeout 30 npm run gera;
+
+
+
+1.  Em uma pasta vazia, inicie o package.json.
+> npm init -y ;
+
+2.  Instalação do babel e dependências.
+> npm i --save-dev @babel/preset-env @babel/core @babel/cli babel-loader webpack webpack-cli regenerator-runtime core-js@3.20.0
+
+3.  Crie a pasta de código fonte (entry)
+> nova pasta > src
+
+4.  Crie a pasta pública (public)
+> nova pasta > public/assets ...
+
+5.  Crie um arquivo de configuração para o webpack.
+> novo arquivo > webpack.config.js
+
+6.  Crie o script que iniciará o webpack no package.json.
+> "gera": "wepback -w" - lembrando que após "run" precisa depois encerrar o processo. ctrl + c.
+
+7.  Executar o script.
+> npm run gera

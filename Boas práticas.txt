@@ -1,6 +1,7 @@
 Boas práticas
 As boas práticas são fundamentais para manter a saúde do seu código, tornando sua manutenção simples e seu perfil de programador elevado.
 
+• Códigos profissionais são transpilados e modularizados.
 • Nunca deixe seu código em escopo global, crie funções.
 • O throw new Error('..') irá lançar o erro diretamente para o catch(..).
 • Sempre que precisar criar chaves privadas use o Symbol.
@@ -82,6 +83,10 @@ JSON e Requisições
 • Quando trabalhar com AJAX ou Requisições (XML), considere o uso de Fetch() ou Axios, pois torna o trabalho ainda mais simples.
 • Este é um processo client-side portanto trabalhar via navegador.
 • Para ver e manipular adequadamento, o array extraído de um JSON precisa ser iterado via for of.
+
+Módulos Importação | Exportação
+• Considere seu uso frequente.
+• Sempre apelide os nomes durante a importação | exportação.
 
 Transpiladores
 Sempre que possível transpile seu código para aumentar a compatibilidade.
