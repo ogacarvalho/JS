@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Quebrador de Senha</title>
+</head>
+
+<body>
+
+  <section class="container">
+    <h1>Quebrador de Senhas!</h1>
+    <h3>Configurações</h3>
+    Quantidade de letras:  <input type="number" id="letras" min="4" placeholder="Mínimo 4 letras"><br>
+    Adicionar números:  <input type="checkbox" id="num"><br>
+    Letras maiúsculas:  <input type="checkbox" id="maiusc"><br>
+    Conter símbolos:  <input type="checkbox" id="simb"><br>
+    <button id="gerar">Gerar senha!</button>
+    <div class="resultado">
+      <p id="senha"></p>
+    </div>
+    
+  </section>
+  <script src="./assets/js/bundle.js"></script>
+</body>
+
+</html>
