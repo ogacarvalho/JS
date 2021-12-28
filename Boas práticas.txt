@@ -25,8 +25,10 @@ As boas práticas são fundamentais para manter a saúde do seu código, tornand
 Dicas
 Informações que poderão ser úteis. 
 
-• Formate textos com Slice( )!
+• Formate textos com Slice( )!,
+• Lembre-se do Curto-Circuíto: Se ABC for true && faça isso!
 • Quando trabalhar com AJAX ou Requisições (XML), considere o uso de Fetch(), torna o trabalho ainda mais simples.
+• Para gerar letras use: String.fromCharCode( .. )
 • Quando trabalhar com objetos ou arrays considerar o uso de atrib. por desestruturação e estruturação de dados com o uso de new Map( ).
 • Só use o innerHTML se seu código contiver tags html se não, use o innerText.
 • Para iterar objetos use for in para iterar arrays de modo semântico e simples for of para aplicar funções em elementos de um array forEach.
@@ -60,6 +62,8 @@ Objetos
 
 Funções em Ordem Específica
 • Sempre que precisar executar múltiplas funções de modo ordenado, considere Promises( .. ) com Async e Await envoltos em um Try Catch.
+• Lembre-se que os parâmetros das funções também podem ser usados de modo Booleano, em conjunto do Short-Circuit -> função(true?, true?, true?){...}
+
 
 Array
 • É possível transformar Strings em Arrays  e aplicar funções facilmente com Array.from.

@@ -14,7 +14,8 @@ body {
   padding: 0;
   background: var(--primary-color);
   font-family: 'Open sans', sans-serif;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  line-height: 1.5em;
 }
 
 .container {
@@ -23,26 +24,52 @@ body {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  line-height: 30px;
 }
 
-.container p{
-  margin: 0px;
+form input, form label, form button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-#quantidade_letras{
-  width: 40px;
+form input {
+  font-size: 24px;
+  height: 50px;
+  padding: 0 20px;
 }
 
-#gerar{
-  margin: 10px 0;
+form input:focus {
+  outline: 1px solid var(--primary-color);
 }
 
-#senha{
-  margin: 10px 0;
+form button {
+  border: none;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  height: 50px;
+  cursor: pointer;
+  margin-top: 30px;
 }
 
-.resultado{
-  font-size: 2rem;
-  text-align: center;
+form button:hover {
+  background: var(--primary-color-darker);
+}
+
+.senha-gerada {
+  font-size: 2em;
+  color: var(--primary-color);
+  margin: 40px 0;
+}
+
+input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+}
+
+button {
+  display: block;
+  margin: 40px 0;
+  font-size: 1em;
 }
