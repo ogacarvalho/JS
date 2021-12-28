@@ -1,7 +1,6 @@
 Boas práticas
 As boas práticas são fundamentais para manter a saúde do seu código, tornando sua manutenção simples e seu perfil de programador elevado.
 
-• Colaborações são modularizadas!
 • Códigos profissionais são transpilados e modularizados.
 • Nunca deixe seu código em escopo global, crie funções.
 • O throw new Error('..') irá lançar o erro diretamente para o catch(..).
