@@ -11,13 +11,13 @@ O processo de exportação no node é diferente, o fazemos configurando o objeto
 3. Para importar "requeremos" o módulo inteiro.
 -   const modulo = require("./modulo1");          !Pasta atual, arquivo modulo1.
 
+4. É possível sobreescrever o modules inteiro e enviar diversos dados de uma vez: modules.exports = { };
+
 !Módulos instalados via NPM (Não requerem o caminho "./" apenas o NOME)
 */
 
 const NOME = 'Gabriel'; const SOBRENOME = 'Carvalho';
-
 const falaNomes = () => console.log(NOME,SOBRENOME);
-
 exports.nome = NOME;
 exports.sobrenome = SOBRENOME;
 this.sistema = falaNomes;
@@ -28,4 +28,4 @@ class Pessoa {
         this.nome = nome;
     }
 }
-exports.Pessoa = Pessoa;
+exports.Pessoa = Pessoa; //Agora o modules.export contém a classe Pessoa.
