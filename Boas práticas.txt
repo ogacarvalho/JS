@@ -9,7 +9,7 @@ As boas práticas são fundamentais para manter a saúde do seu código, tornand
 • Sempre desenvolva o seu código de modo particionado.
 • Programar em inglês
 • Recomendado utilizar camelCase.
-• Sempre que possível declare utilizando const.
+• Sempre que possível declare utilizando const, e se fizer use maiúsculas.
 • Os arquivos em JavaScript devem estar dentro da pasta js.
 • Sempre selecione elementos utilizando QuerySelector.
 • Sempre que possível utilize arrow function simplificada ou o mais próximo disso. 
@@ -59,7 +59,9 @@ Objetos
 • Funções dentro de objetos são métodos, e métodos não precisam do "function .."
 • Para configurar a entrada e saída de um método use: getters e setters
 • Para modificar as suas propriedades use Object.defineProperty( .. )
-• Quando simplesmente coloca um objeto em outra variável você está apenas criando um novo link para o mesmo endereço de memória Existem formas corretas de copiar objetos {...objeto}.
+• Um objeto dentro de uma variável é apenas um link para um endereço de memória.
+• Para de fato copiar objetos use: let abc =  {...objeto}.
+• (forEach) para manipular ou iterar objetos:   objeto.forEach(obj => obj.chave)   !Para cada laço do objeto, retorne a chave x.
 
 Funções em Ordem Específica
 • Sempre que precisar executar múltiplas funções de modo ordenado, considere Promises( .. ) com Async e Await envoltos em um Try Catch.
@@ -89,6 +91,8 @@ JSON e Requisições
 • Quando trabalhar com AJAX ou Requisições (XML), considere o uso de Fetch() ou Axios, pois torna o trabalho ainda mais simples.
 • Este é um processo client-side portanto trabalhar via navegador.
 • Para ver e manipular adequadamento, o array extraído de um JSON precisa ser iterado via for of.
+• Converter objetos em JSON:    JSON.stringify(objeto,'', 2);
+• Converter JSON em objetos:    JSON.parse(json)
 
 Módulos Importação | Exportação
 • Considere seu uso frequente.
@@ -147,6 +151,16 @@ Navegando entre Pastas
 • Para criar caminhos universais independente do SO: let path = require('path') | path.resolve(__dirname);
 
 
+FileSystem e Path - API Node (Nativa)
+Criando, analisando e manipulando arquivos do sistema.
+
+• Para analisar arquivos do sistema, ou manipulá-los use:         require('fs').promises;                     !Promises permite manipular o retorno dos métodos(..).
+• Para trabalhar com caminhos de modo mais inteligente use:       require('path');
+• Para escrever dados em um arquivo:                              filesystem.writefiles(caminho,dados,opções);
+• Para ler os dados de um arquivo:                                filesystem.readfiles(caminho, 'UTF8');
+
+! Importante, sempre que importar filesystem com promises, tratá-los com then(..) ou async.
+! Estude os métodos do filesystem, existem vários.
 
 
 
