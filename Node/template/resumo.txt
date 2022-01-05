@@ -1,0 +1,26 @@
+Geral:
+Este é um template em Node.js do Servidor Express com a base de dados MongoDB e arquitetura Full MVC.
+
+- Front-end: Este é o primeiro arquivo da pasta, nele temos os assets e o main.js cuja função é executar os scripts e pacotes de retro-compatibilidade e conectar/importar o CSS.
+
+- Public: Nesta pasta temos o produto final, bundle.js este arquivo é a compilação já traduzida para diversos navegadores de todo nosso código e será servida ao público.
+
+- Back-end(src): Aqui armazenamos todos os arquivos de gerenciamento da aplicação.
+
+    Sub-pastas(Back-end)
+    • Controllers: Nesta pasta encontraremos os arquivos responsáveis por controlar as decisões para cada requisição de rota enviada pelo routes.js individualmente.
+    • Middlewares: Aqui ficarão os interceptadores.
+    • Models: Arquivos de configuração e construção dos modelos de armazenamento de dados no MongoDB.
+    • Views: Esta é a pasta do renderizador, que armazena e renderiza os arquivos HTML.
+
+- Routes: Redirecionador de rotas, nele ficarão todas as rotas da aplicação e uma vez requisitadas ele as conecta com o controller indicado.
+
+- Server: Cabeça do sistema, responsável por importar, conectar e gerenciar os pacotes no servidor.
+
+- .Env: Este é um arquivo oculto de armazenamento de dados sigilosos do pacote 'dotenv' e não pode ser enviado ao repositório, deve permanecer local.
+
+- .Gitignore: Indica ao GIT quais pastas/arquivos devem ser ignorados. Neste caso, (nodemodules e env).
+
+- Package.json: Configurador dos pacotes instalados via NPM.
+
+- webpack.config: Configurações do transpilador.
