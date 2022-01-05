@@ -1,0 +1,12 @@
+How to:
+
+
+Criação do template:
+1.  Vamos copiar o Starter Template do site do Bootstrap e colar no Index.ejs            !Importar includes.
+2.  Enviaremos o 'head' e o 'footer' para o includes, deixando apenas o h1.              !Colocar o nosso script no footer
+3.  Para evitar conflitos com o Bootstrap apagaremos todos os dados do CSS.
+4.  No site do BS iremos copiar a primeira Navbar que encontrarmos.
+5.  Em includes crie um arquivo chamado navbar e a coloque, para então a limparmos.
+6.  Com o bootstrap configuramos as aparências.
+
+Criando página de login e criar conta:
