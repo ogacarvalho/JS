@@ -1,12 +1,41 @@
-How to:
+Projeto Agenda - How to:
 
 
-Criação do template:
-1.  Vamos copiar o Starter Template do site do Bootstrap e colar no Index.ejs            !Importar includes.
-2.  Enviaremos o 'head' e o 'footer' para o includes, deixando apenas o h1.              !Colocar o nosso script no footer
+Criação do template
+1.  Vamos copiar o Starter Template do site do Bootstrap e colar no Index.ejs                                     !Importar includes.
+2.  Enviaremos o 'head' e o 'footer' para o includes, deixando apenas o h1.                                       !Colocar o nosso script no footer
 3.  Para evitar conflitos com o Bootstrap apagaremos todos os dados do CSS.
 4.  No site do BS iremos copiar a primeira Navbar que encontrarmos.
 5.  Em includes crie um arquivo chamado navbar e a coloque, para então a limparmos.
 6.  Com o bootstrap configuramos as aparências.
 
-Criando página de login e criar conta:
+
+Criando página de login e criar conta
+1.  Criamos a rota de login.                                                                                       !Paginas iniciais (index) podem ser omitidas.
+2.  Criamos o Controller de login.
+3.  Criamos o html de login, utilizando formulários do bootstrap.
+!.  Para recebermos os dados do formulários, precisamos definir uma rota e um metódo de requisição(POST)           !Por padrão vem como GET
+4.  Configuramos o middleware que renderiza a pagina 404 para qualquer erro.
+!.  Injetar o input oculto que executa o sistema de segurança CSRF no Formulário.                                  !<input type="hidden" name="_csrf" value=<%= csrfToken %>>
+
+
+Criando usuários
+    Criação e Conexão das Rotas
+    1. Criamos a rota de registro do tipo POST e a conectamos em Controller.
+    2. Importe o arquivo Model de Login, e conecte a função construtora no Controller do Login.
+    !. Todas as configurações e validações são feitas no arquivo Model de cada Controller.
+  
+    Validação
+    !. Nunca confie nos dados do usuário, sempre gere validações para todas as possibilidades.
+    !. Toda função relacionada ao Mongoose e BD retorna Promises, logo devemos usar async e await.
+    1. Crie o objeto que receberá o corpo da requisição, e os métodos de validação.
+    2. Configure o controller para salvar a sessão e redirecionar a página de volta, em caso de erro.
+    3. Crie um arquivo de messages em includes, onde executaremos um forEach que importará os erros via locals.
+    !. Locals é o objeto onde colocamos dados via mw, para serem acessados em todo servidor.
+    4. Em middlewares, acessaremos o locals, e caso existam pegaremos os errors enviados flash('errors', dados) no controller.
+    5. Após criar toda teia de conexão de erros, os envie via "includes" para o local no html desejado.
+    
+    
+    Model
+    1. Crie o template (Schema) de armazenamento de dados cadastrais do BD. 
+    1. 

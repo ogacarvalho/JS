@@ -1,0 +1,87 @@
+<%- include('includes/head') %>
+<%- include('includes/navbar') %>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8 my-3">
+
+      <h1 class="text-center">Criar conta ou entrar</h1>
+      <p class="text-center lead">Faça login ou crie sua conta abaixo.</p>
+      <%- include('includes/messages'); %>
+
+      <div class="row">
+
+        <div class="col-lg">
+          <h4>Cadastre-se</h4>
+          <p>Se você não tem uma conta, preencha o formulario:</p>
+
+          <!-- Crie uma rota e defina o method 'post', para receber os dados do formulário. -->
+          <form action="/login/register" method="POST"> 
+
+            <!-- Sempre ative o sistema CSRF em Formulários -->
+            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+
+            <div class="mb-3">
+              <label>Seu email</label>
+              <input type="email" class="form-control" name="email">
+            </div>
+            <div class="mb-3">
+              <label>Senha</label>
+              <input type="password" class="form-control" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Criar minha conta!</button>
+          </form>
+        </div>
+
+
+        <div class="col-lg">
+          <h4>Login</h4>
+          <p>Se você já tem uma conta, digite seu login e senha:</p>
+          <form action="/login/login" method="POST">
+  
+            <input type="hidden" name="_csrf" value=<%= csrfToken %>> 
+
+            <div class="mb-3">
+              <label>Seu email</label>
+              <input type="email" class="form-control" name="email">
+            </div>
+            <div class="mb-3">
+              <label>Senha</label>
+              <input type="password" class="form-control" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- <div class="row">
+        <div class="col my-3">
+          <div class="alert alert-danger">Um erro qualquer</div>
+        </div>
+      </div> -->
+
+      <!-- <div class="responsive-table">
+        <table class="table my-3">
+          <tr>
+            <td>Gabriel</td>
+            <td>Carvalho</td>
+            <td>12 98117 3031</td>
+            <td>arrobacarvalho@gmail.com</td>
+          </tr>
+        </table>
+      </div> -->
+
+    </div>
+
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+
+
+<%- include('includes/footer') %>
