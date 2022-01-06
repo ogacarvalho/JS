@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator'); //Pacote de validação de dados de email.
+const bcryptjs = require('bcryptjs');
 
 
 const LoginSchema = new mongoose.Schema({
@@ -18,19 +19,44 @@ class Login{
         this.errors = []; //Vai controlar se o usuário pode ou não ser criado na BD.
         this.user = null;
     }
-    async register(){    //A criação de dados é por padrão uma Promise logo precisamos de Async.
+
+    async login(){
         this.valida();
+        if(this.errors.length > 0) return;
+        this.user = await LoginModel.findOne({ email: this.body.email });
 
-        //Checagem da existência de erros.                     !Se passar daqui, o usuário precisa ser registrado na BD.
-        if(this.errors.length > 0) return; 
+        if(!this.user) {
+            this.errors.push('Usuário não existe.')
+            return;
+        }
 
-        try{
-            //Registro do usuário no banco de dados.               Se o usuário passar na validação, então a propriedade "user" receberá os dados.
-            this.user = await LoginModel.create(this.body);        //Login{user: recebe o usuário (email/senha)} e poderá ser acessado em Controller.
+        if( !bcryptjs.compareSync(this.body.password, this.user.password) ){
+            this.errors.push('Senha inválida.');
+            this.user = null; //Garantir que o usuário continue sendo nulo enquanto não acertar tudo.
+            return;
+        };
 
-        }catch(e){console.log(e)};
+        //Se passar aqui daqui, criaremos uma sessão no controller.
 
     }
+
+    async register(){                                                          //A criação de dados é por padrão uma Promise logo precisamos de Async.
+        this.valida();
+        if(this.errors.length > 0) return;                                     //Se der erro nos dados puros do usuário, será parado aqui. (Validação Dupla)
+
+        await this.userExists();
+        if(this.errors.length > 0) return;                                      //Não há erros nos dados puros, então verifique o e-mail.
+
+        const salt = bcryptjs.genSaltSync();                                    //Executa o salt.
+        this.body.password = bcryptjs.hashSync(this.body.password, salt)        //Gera o hash no password, antes de registrar.
+        this.user = await LoginModel.create(this.body);                         //Após ser validado e encriptado, podemos registrar o usuário, no banco de dados.
+    }
+
+    async userExists(){
+        this.user = await LoginModel.findOne({ email: this.body.email });          //Procure nos e-mails da base de dados por este e-mail.
+        if(this.user) this.errors.push('Usuário já existe.');                      //Já existe? Lança o erro.
+        
+    };
 
     valida(){
         this.cleanUp();

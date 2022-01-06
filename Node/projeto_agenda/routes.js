@@ -10,5 +10,7 @@ module.exports = routes;
 routes.get('/', homeController.index);
 
 //Rotas - login
-routes.get('/login/index', loginController.index)
-routes.post('/login/register', loginController.register)
+routes.get('/login/index', loginController.index);
+routes.post('/login/register', loginController.register); //Essa rota está sendo usada pelo form. de registro em views.
+routes.post('/login/login', loginController.login); 
+routes.get('/login/logout', loginController.logout); 

@@ -2,6 +2,7 @@
 exports.middlewareGlobal = (req, res, next) => {
     res.locals.errors = req.flash('errors');                           //O flash está armazenando os erros, se existirem, serão enviados ao locals.errors.
     res.locals.success = req.flash('success');
+    res.locals.user = req.session.user;
     next();                                                            //E automaticamente acionará o "errors" em messages (includes), que os mostrará.
 
 };

@@ -19,7 +19,12 @@ Criando página de login e criar conta
 !.  Injetar o input oculto que executa o sistema de segurança CSRF no Formulário.                                  !<input type="hidden" name="_csrf" value=<%= csrfToken %>>
 
 
+
 Criando usuários
+
+    Model
+    1. Crie o template (Schema) de armazenamento de dados cadastrais do BD. 
+
     Criação e Conexão das Rotas
     1. Criamos a rota de registro do tipo POST e a conectamos em Controller.
     2. Importe o arquivo Model de Login, e conecte a função construtora no Controller do Login.
@@ -34,8 +39,43 @@ Criando usuários
     !. Locals é o objeto onde colocamos dados via mw, para serem acessados em todo servidor.
     4. Em middlewares, acessaremos o locals, e caso existam pegaremos os errors enviados flash('errors', dados) no controller.
     5. Após criar toda teia de conexão de erros, os envie via "includes" para o local no html desejado.
+    !. Checagem se o e-mail do usuário já existe.
+
+    Registro
+    1. Instalação do bcryptjs (encriptador de password)
+    2. Após a validação, antes de registrar o usuário, executaremos o bcrypt.
+    3. Com todos os dados validados, a propriedade usuário, recebe a criação do mesmo.
+    !. Não esquecer de criar um hash para o password. hash != criptografar.
+
+
+Logando usuários
     
+    Criação do sistema de login.
+    1. Crie a rota e o controller de login (Register adaptado)
+    2. Em models, crie um método em Login chamado (login).
+    3. Primeiro, novamente realize a validação pura.
+    4. Usuário não existe? Push Erro.
+    5. Uusário Existe Senha errada? Push Erro.
+    6. Usuário Existe, Senha Correta? Cria uma sessão.
+
     
-    Model
-    1. Crie o template (Schema) de armazenamento de dados cadastrais do BD. 
-    1. 
+    Criando Sessão
+    1. Em controller após as validações de login e abaixo da mensagem de "sucesso", digite: req.session.user = login.user;
+    !. Estamos criando uma propriedade em session que vai receber o usuário.
+    2. Em mw.global (crie em locals) a propriedade user, que receberá req.session.user
+    3. Em nav.ejs usando locals, faremos uma checagem. Se user não existir: mostre -> Entrar
+
+    Logout
+    1. Criamos uma rota /login/logout que da acesso a requisição do tipo get cujo resposta no controller será um req.session.destroy();
+    2. Depois em navbar configuramos os links para que apareçam corretamente quanto o "user" em locals existir ou não.
+
+
+    
+Cadastrando Contatos
+    
+
+
+
+
+
+
