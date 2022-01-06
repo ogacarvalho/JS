@@ -72,7 +72,13 @@ Logando usuários
 
     
 Cadastrando Contatos
+    1. Crie a rota, o controller e o index.
     
+    Validações
+    1. Com middlewares verificaremos se o usuário solicitando a rota, já possui sessão ativa.
+    2. Se o usuário não estiver logado, digitaremos: req.flash('errors', 'Efetue o login') que fará o push deste erro em errors e salve a sessão.
+    !. Salvar a sessão é muito importante para garantir a atualização de estado do usuário.
+    3. Middleware criado, vamos inserí-lo e executa-lo em rotas. (Importando-o).
 
 
 

@@ -19,3 +19,12 @@ exports.mwCSRF = (req, res, next) => {
     next();
 };
 
+exports.loginRequired = (req,res,next) => {
+
+    if(!req.session.user) {
+        req.flash('errors', 'Efetue o login.' );
+        req.session.save( () => res.redirect('/') );
+        return;
+    };
+    next(); //Se o usuário estiver logado, segue o baile.
+};
