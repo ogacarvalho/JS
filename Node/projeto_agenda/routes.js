@@ -23,3 +23,5 @@ routes.get('/login/logout', loginController.logout);
 routes.get('/contato/index', loginRequired, contatoController.index); //loginRequired -> Middleware importado.
 routes.post('/contato/register',loginRequired, contatoController.register);
 routes.get('/contato/index/:id',loginRequired, contatoController.editIndex);         //:id (parâmetro de url)
+routes.post('/contato/edit/:id',loginRequired, contatoController.edit);
+routes.get('/contato/delete/:id',loginRequired, contatoController.delete); 

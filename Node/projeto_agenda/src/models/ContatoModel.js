@@ -19,13 +19,6 @@ function Contato(body){
     this.dados = null;
 }
 
-//Função estática (não está atrelada a nenhuma instãncia)
-Contato.buscaPorId = async function(id){ //Buscará pelo id no banco de dados.
-    if(typeof id != 'string') return;
-    const user = await ContatoModel.findById(id); //Ou vai retonar o usuário com o ID ou vai retonar "Null".
-    return user;
-};
-
 
 Contato.prototype.register = async function(){       //Essa função vai trabalhar direto com a base de dados logo precisa ser ASSYNC
     this.valida();  
@@ -58,7 +51,37 @@ Contato.prototype.cleanUp = function (){
         email:     this.body.email,
         telefone:  this.body.telefone
     };
-}
+};
+
+Contato.prototype.edit = async function (id){                                      //Se o id existir, irá atualizá-lo e envia-lo para dados.
+    if(typeof id !== 'string') return;
+    this.valida();
+    if(this.errors.length > 0) return;
+    this.dados = await ContatoModel.findByIdAndUpdate(id, this.body, {
+        new: true //Quando terminar retorne os dados atualizados.
+    });
+};
+
+//Métodos estáticos não vao para o Prototype, logo não tem acesso a palavra this.
+Contato.buscaPorId = async function(id){ //Buscará pelo id no banco de dados.
+    if(typeof id != 'string') return;
+    const contato = await ContatoModel.findById(id); //Ou vai retonar o usuário com o ID ou vai retonar "Null".
+    return contato;
+};
+
+//Métodos estáticos não vao para o Prototype, logo não tem acesso a palavra this.
+Contato.buscaContatos = async function(){ 
+    const contatos = await ContatoModel.find()
+    .sort({ criadoEm: -1 }) //Ordenar por "criadoEm" e -1 para ordem decrescente.
+    return contatos;
+};
+
+Contato.delete = async function(id){ 
+    if(typeof id != 'string') return;
+    const contato = await ContatoModel.findOneAndDelete({_id: id});
+    return contato;
+};
+
 
 
 module.exports = Contato;

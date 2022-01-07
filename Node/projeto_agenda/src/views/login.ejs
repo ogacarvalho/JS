@@ -15,12 +15,12 @@
 
       <div class="row">
 
-        <div class="col-lg">
+        <div class="col-lg my-5">
           <h4>Cadastre-se</h4>
           <p>Se você não tem uma conta, preencha o formulario:</p>
 
           <!-- Crie uma rota e defina o method 'post', para receber os dados do formulário. -->
-          <form action="/login/register" method="POST"> 
+          <form class="form-cadastro" action="/login/register" method="POST"> 
 
             <!-- Sempre ative o sistema CSRF em Formulários -->
             <input type="hidden" name="_csrf" value=<%= csrfToken %>>
@@ -38,10 +38,11 @@
         </div>
 
 
-        <div class="col-lg">
+        <div class="col-lg my-5">
           <h4>Login</h4>
           <p>Se você já tem uma conta, digite seu login e senha:</p>
-          <form action="/login/login" method="POST">
+
+          <form class="form-login" action="/login/login" method="POST">
   
             <input type="hidden" name="_csrf" value=<%= csrfToken %>> 
 

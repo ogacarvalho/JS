@@ -81,7 +81,20 @@ Cadastrando Contatos
     3. Middleware criado, vamos inserí-lo e executa-lo em rotas. (Importando-o).
 
 
+Editando Contatos
+    1. Para que o contato não possa ser salvo repetidamente, vamos fazer uma condicional no seu formulário.
 
 
+Adicionando Contatos na página.
+    1. Vamos substituir os contatos fixos na página "agenda" por um loop que vai ler continuamente os dados.
+    2. Em home importamos o Model, e criamos um método estático (Não são instanciados/não vao para o prototype).
+    3. Esse método estático vai buscar todos os contatos e ordenar por "criadoEm: -1".
+    4. No controller, chamamos o método e o armazenamos em contatos, e depois o injetamos no index. 
+    5. Agora que injetamos o array(json) contatos proveniente do BD no index, vamos fazer um contatos.forEach no index.
+    6. Dentro do forEach colocamos a tabela e substituimos os nomes nela, por "parametro.nome, parametro.sobrenome.." etc.,
+
+
+Validações no Front-end
+    !Essas validações são essênciais, pois desta forma economiza-se muita performance do banco de dados, pois na realidade as buscas no banco de dados devem ser mínimas, e estritamente se necessário. De resto, se possível tudo feito no front-end.
 
 

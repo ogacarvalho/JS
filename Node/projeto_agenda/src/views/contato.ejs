@@ -11,8 +11,12 @@
       <p class="text-center lead">Crie ou edite seu contato abaixo.</p>
       <%- include('includes/messages') %>
 
-      <form action="/contato/register" method="POST"> 
-
+      <% if(contato._id) { %>
+        <form action="/contato/edit/<%= contato._id %>" method="POST"> 
+      <% }else{ %>
+        <form action="/contato/register" method="POST"> 
+      <% } %>
+      
         <!-- Sempre ative o sistema CSRF em Formulários -->
         <input type="hidden" name="_csrf" value=<%= csrfToken %>>
 
@@ -36,7 +40,12 @@
           <input value="<%= contato.telefone %>" type="tel" class="form-control" name="telefone">
         </div>
 
-        <button type="submit" class="btn btn-primary">Cadastrar contato!</button>
+        <% if(contato._id) { %>
+          <button type="submit" class="btn btn-primary">Editar contato!</button>
+        <% }else{ %>
+          <button type="submit" class="btn btn-primary">Cadastrar contato!</button>
+        <% } %>
+        
       </form>
 
     </div>
