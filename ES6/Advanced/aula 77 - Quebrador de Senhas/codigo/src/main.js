@@ -10,7 +10,7 @@ import './assets/css/style.css';
   let result = document.querySelector("#senha");
   
 
-  let letras =["a","b","c","d","e","f","g","h","i","j","k"];
+  let letras =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","x","y","w","z"];
   let numeros =["1","2","3","4","5","6","7","8","9","0"];
   let simbolos = [",", "#", "$","@", "*", "&"];
 
@@ -32,6 +32,7 @@ import './assets/css/style.css';
     if (simb.checked) addSimb(senha);
 
     senha = converte(senha);
+
     sistema(nova);
     if (numbers.checked) addNumber(nova);
     if (maiusc.checked) addMaiusc(nova);
@@ -67,14 +68,6 @@ import './assets/css/style.css';
     Senhas Repetidas: ${xnum - log.length}<br><br>
     Possibilidades: ${qdl.value ** letras.length}`
   });
-
-
-    //Quebrador de senha:
-    function quebra(senha){
-      sistema(senha);
-
-      return senha;
-    }
 
 
     //Criador de Senhas
