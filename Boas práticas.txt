@@ -26,7 +26,7 @@ As boas práticas são fundamentais para manter a saúde do seu código, tornand
 Dicas
 Informações que poderão ser úteis. 
 
-• Formate textos com Slice( )!,
+• Formate textos com Slice( )!
 • Lembre-se do Curto-Circuíto: Se ABC for true && faça isso!
 • Quando trabalhar com AJAX ou Requisições (XML), considere o uso de Fetch(), torna o trabalho ainda mais simples.
 • Para gerar letras use: String.fromCharCode( .. )
@@ -62,6 +62,8 @@ Objetos
 • Um objeto dentro de uma variável é apenas um link para um endereço de memória.
 • Para de fato copiar objetos use: let abc =  {...objeto}.
 • (forEach) para manipular ou iterar objetos:   objeto.forEach(obj => obj.chave)   !Para cada laço do objeto, retorne a chave x.
+• For of e métodos do Object devem ser utilizados para manipular objetos.
+• Sempre que possível use notação dinâmica para atribuir e selecionar propriedades: objeto[propriedade]
 
 Funções em Ordem Específica
 • Sempre que precisar executar múltiplas funções de modo ordenado, considere Promises( .. ) com Async e Await envoltos em um Try Catch.
@@ -76,6 +78,7 @@ As expressões regulares, podem facilitar muito a manipulação de Strings.
 
 Prototypes
 Sempre que estiver trabalhando com funções construtoras, faça uso de prototypes, e heranças.
+!Prototype é o "local" de armazenamento de métodos, cujo acesso é restrito as instâncias da classe Mãe, a vantagem é performance, métodos são carregados a cada instância.
 
 Validações
 Busque criar as validações sempre antes do código, pois aumenta a performance.
