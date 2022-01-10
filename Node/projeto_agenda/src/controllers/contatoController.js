@@ -1,26 +1,26 @@
-const Contato = require('../models/ContatoModel');
-
-exports.index = (req ,res) => {             //Logado, entrou na página "cadastrar contato"
-    res.render('contato', {                 //Agora contato precisa fingir que tem contato, para não dar erro.
+const Contato = require('../models/ContatoModel');                                        //Importa dados do Model Contato.             
+ 
+exports.index = (req ,res) => {                                                           //Requisição da home.            !Todos os dados abaixo realizam checagem de login.
+    res.render('contato', {                                                               //Usuário logado, renderiza página de contato, com locals "contato" vázio.
         contato: {}
     });         
 };
 
 
-exports.register = async (req, res) => {         //Nosso model trabalha diretamente com o BDD logo? ASYNC.
-    try{
-        const instancia = new Contato(req.body);
-        await instancia.register();
+ exports.register = async (req, res) => {                                                 //Usuário quer registrar um contato na agenda.
+    try{      
+        const instancia = new Contato(req.body);                                          //Instântica -> Classe Contato recebe parâmetros da requisição (post).
+        await instancia.register();                                                       //Aciona método de registro.
 
-        if(instancia.errors.length > 0){
-            req.flash('errors', instancia.errors );
-            req.session.save( () => res.redirect('back') );
+        if(instancia.errors.length > 0){                                                  //Erros true?
+            req.flash('errors', instancia.errors );                                       //Display dos erros.
+            req.session.save( () => res.redirect('back') );                               //Salva sessão, redireciona para pagina anterior.
             return;
         }
 
-        req.flash('success', 'Contato registrado com sucesso!');                          //Instãncia.objeto.propriedade
-        req.session.save( () => res.redirect(`/contato/index/${instancia.dados._id}`) );   //"contato.contato._id" === this.contato (essa instância).contato
-        return;
+        req.flash('success', 'Contato registrado com sucesso!');                           //Erros false? Display "sucesso"
+        req.session.save( () => res.redirect(`/contato/index/${instancia.dados._id}`) );   //Salva a sessão, redirect para pagina do contato. !ID enviado ao URL.
+        return;                                                                            //Retorna.
 
     }catch(e){
         console.log(e);
@@ -28,40 +28,40 @@ exports.register = async (req, res) => {         //Nosso model trabalha diretame
     };
 };
 
-exports.editIndex = async (req,res) => {
-    if(!req.params.id) return res.render('404'); //Se não for enviado este parâmetro(id) - erro.
-    const contato = await Contato.buscaPorId(req.params.id); //vai buscar o id enviado no parâmetro, ali no redirect. (retorna o "id")
+exports.editIndex = async (req,res) => {                                                  //Usuário redirecionado para pagina inicial do "editar contato"
+    if(!req.params.id) return res.render('404');                                          //Se não houver parâmetros de ID no URL -> Renderiza Erro.
+    const contato = await Contato.buscaPorId(req.params.id);                              //Constante recebe dados do contato com base no ID. (Busca no BD)
 
-    if(!contato) return res.render('404');
-    res.render('contato',{ contato }); //Esse é o ID retornado.
+    if(!contato) return res.render('404');                                                //Se não retornar um objeto com o contato, renderiza 404.
+    res.render('contato',{ contato });                                                    //Tudo certo? Renderiza paǵina Contato, injeta os dados no locals.
 };
 
-exports.edit = async (req, res) => {
-    if(!req.params.id) return res.render('404');
-    const contato = new Contato(req.body);
-    await contato.edit(req.params.id);
+exports.edit = async (req, res) => {                                                      //Usuário clica no botão editar contato.
+    if(!req.params.id) return res.render('404');                                          //Se não houver parâmetros no URL -> Renderiza 404.
+    const contato = new Contato(req.body);                                                //Constante recebe classe de Models com parâmetros da requisição !post.
+    await contato.edit(req.params.id);                                                    //Executa método "edit" com o ID do contato nos parâmetros.
 
-    if(contato.errors.length > 0){
-        req.flash('errors', contato.errors );
+    if(contato.errors.length > 0){                                                        //Erros true? 
+        req.flash('errors', contato.errors );                                             //Display do erro, salva a sessão e redireciona para a página anterior.
         req.session.save( () => res.redirect('back') );
         return;
     }
 
-    req.flash('success', 'Contato editado com sucesso!');
-    req.session.save( () => res.redirect(`/contato/index/${contato.dados._id}`) );
+    req.flash('success', 'Contato editado com sucesso!');                                 //Erros False?
+    req.session.save( () => res.redirect(`/contato/index/${contato.dados._id}`) );        //Salva a sessão, redireciona para a página do contato.
     return;
 
 
 };
 
-exports.delete = async (req, res) => {
-    if(!req.params.id) return res.render('404');
+exports.delete = async (req, res) => {                                                    //Usuário quer deletar o contato.
+    if(!req.params.id) return res.render('404');                                          //Não há parâmetros de ID no URL? -> Renderiza 404.
 
-    const contato = await Contato.delete(req.params.id);
-    if(!contato) return res.render('404');
+    const contato = await Contato.delete(req.params.id);                                  //Constante recebe retorno da execução do método "delete" com parâmetros "id".
+    if(!contato) return res.render('404');                                                //Se contato não conseguir apagar, renderiza 404.
 
-    req.flash('success', 'Contato apagado com sucesso.');
-    req.session.save(() => res.redirect('back'));
+    req.flash('success', 'Contato apagado com sucesso.');                                 //Apagou? Display Sucesso.
+    req.session.save(() => res.redirect('back'));                                         //Salva a sessão redireciona para a pg. anterior.
     return;
 
 };

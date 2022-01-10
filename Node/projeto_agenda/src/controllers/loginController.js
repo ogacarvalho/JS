@@ -1,15 +1,14 @@
 
-//Importando qualquer dado do exports de LoginModel
-const Login = require('../models/LoginModel');
+const Login = require('../models/LoginModel');                                    //Login recebe dados de LoginModel.js
 
-exports.index = (req, res) => {
-    if(req.session.user) return res.render('login-logado');
-    return res.render('login');
+
+exports.index = (req, res) => {                                                   //Requisição da rota login/index                                             
+    if(req.session.user) return res.render('login-logado');                       //Se o usuário estiver em sessão, renderiza a página "login-logado"
+    return res.render('login');                                                   //Se não, renderiza a página para login.
 };
 
-//Usando constructor vamos passar os dados por ele e validá-los.
-exports.register = async (req, res) => {
-    
+exports.register = async (req, res) => {                                          //Usuário clicou em "registrar-se"         !BD === Promises
+
     try{
         const login = new Login(req.body);                                         //Clicou no submit, nosso server chama a func. cst.
         await login.register();                                                    //E executamos o método de registro, que acionará uma cadeia de eventos.
@@ -23,24 +22,24 @@ exports.register = async (req, res) => {
             return;                                                                //Quit da função, para que ela não vá para "sucesso"
         };
         
-        req.flash('success', 'Seu usuário foi criado!');
-        req.session.save(function (){ 
+        req.flash('success', 'Seu usuário foi criado!');                           //Não houve erros, flash msgs irá mostrar o conteúdo da propriedade "success"
+        req.session.save(function (){                                              //Salva a session.
             return res.redirect('back');
         });
-    }catch(e){
+    }catch(e){                                                                     //Se houver erros, renderiza a página 404.
         console.log(e);
         return res.render('404');
     };
 
 };
 
-exports.login = async (req, res) => {
+exports.login = async (req, res) => {                                              //Usuário quer efetuar o login. !BD === Promises
     
-    try{
+    try{                                                                           //login recebe classe Login com parâmetros da requisição (post)
         const login = new Login(req.body); 
-        await login.login(); 
+        await login.login();                                                       //Executa método Login() - Cadeia de eventos e submétodos.
 
-        if(login.errors.length > 0){ 
+        if(login.errors.length > 0){                                               //Se houver erros, mostre-os, e salve a sessão.
             req.flash('errors', login.errors);
             req.session.save(function (){ 
                 return res.redirect('back');
@@ -49,9 +48,9 @@ exports.login = async (req, res) => {
             return;
         };
         
-        req.flash('success', 'Login bem sucedido.');
-        req.session.user = login.user;
-        req.session.save(function (){ 
+        req.flash('success', 'Login bem sucedido.');                                //Flash mostra mensagem de sucesso.
+        req.session.user = login.user;                                              //Sessions recebe dados do usuário.
+        req.session.save(function (){                                               //Salva a session.
             return res.redirect('back');
         });
     }catch(e){
@@ -61,7 +60,7 @@ exports.login = async (req, res) => {
 
 };
 
-exports.logout = function (req, res){
-    req.session.destroy();
-    res.redirect('/');
+exports.logout = function (req, res){                                               //Usuário solicita Logout
+    req.session.destroy();                                                          //Sessions apaga todos os dados relacionados ao ip.
+    res.redirect('/');                                                              //Redireciona para a home.
 };

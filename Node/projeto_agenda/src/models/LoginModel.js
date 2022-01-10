@@ -1,51 +1,48 @@
-const mongoose = require('mongoose');
-const validator = require('validator'); //Pacote de validação de dados de email.
-const bcryptjs = require('bcryptjs');
+const mongoose = require('mongoose');                                                        //Importa Comunicador Mongoose.
+const validator = require('validator');                                                      //Pacote de validação de dados de email.
+const bcryptjs = require('bcryptjs');                                                        //Encriptador de Passwords.
 
 
-const LoginSchema = new mongoose.Schema({
+const LoginSchema = new mongoose.Schema({                                                    //Molde de Inserção de Dados no Banco.
     email: {type: String, required: true },
     password: {type: String, require: true}
 });
 
 
-const LoginModel = mongoose.model('Login', LoginSchema);                                             //Retorna uma promise.
+const LoginModel = mongoose.model('Login', LoginSchema);                                     //LoginModel recebe Molde com nome "Login"
 
-//A func. Construtora, vai criar objetos e métodos para validarmos os dados.
-//Login é o nome do objeto, e body é uma das propriedades do objeto. (No caso do objeto vigente (this))
-class Login{
-    constructor(body){
-        this.body = body;
-        this.errors = []; //Vai controlar se o usuário pode ou não ser criado na BD.
-        this.user = null;
+class Login{                                                                                 //Classe Login Recebe parâmetros da Requisição.
+    constructor(body){                                                                       
+        this.body = body;                                                                    //"body" recebe corpo da requisição.
+        this.errors = [];                                                                    //erros para controle.
+        this.user = null;                                                                    //Estado do usuário, inicia "nulo"
     }
 
-    async login(){
-        this.valida();
-        if(this.errors.length > 0) return;
-        this.user = await LoginModel.findOne({ email: this.body.email });
+    async login(){                                                                           //Método Assíncrono !relacionado ao BD.
+        this.valida();                                                                       //Executa método de validação do email.
+        if(this.errors.length > 0) return;                                                   //Há erros? retorna.
+        this.user = await LoginModel.findOne({ email: this.body.email });                    //Não? "user:" recebe dados do banco de dados.
 
-        if(!this.user) {
-            this.errors.push('Usuário não existe.')
-            return;
+        if(!this.user) {                                                                     //Não há usuários...
+            this.errors.push('Usuário não existe.')                                          //Erros recebe: 'Não há usuários'.
+            return;                                                                          //Retorna.
         }
 
-        if( !bcryptjs.compareSync(this.body.password, this.user.password) ){
+        if( !bcryptjs.compareSync(this.body.password, this.user.password) ){                 //Se houver usuários e a comparação falhar, "Senha inválida."
             this.errors.push('Senha inválida.');
-            this.user = null; //Garantir que o usuário continue sendo nulo enquanto não acertar tudo.
+            this.user = null;                                                                //Garantir que o usuário continue sendo nulo enquanto não acertar tudo.
             return;
-        };
+        };                                                                                   //A promise retornada deste método será tratada no Controller.
 
-        //Se passar aqui daqui, criaremos uma sessão no controller.
 
     }
 
-    async register(){                                                          //A criação de dados é por padrão uma Promise logo precisamos de Async.
+    async register(){                                                                        //A criação de dados é por padrão uma Promise logo precisamos de Async.
         this.valida();
-        if(this.errors.length > 0) return;                                     //Se der erro nos dados puros do usuário, será parado aqui. (Validação Dupla)
+        if(this.errors.length > 0) return;                                                   //Se der erro nos dados puros do usuário, será parado aqui. (Validação Dupla)
 
-        await this.userExists();
-        if(this.errors.length > 0) return;                                      //Não há erros nos dados puros, então verifique o e-mail.
+        await this.userExists();                                                             //Usuário já existe?
+        if(this.errors.length > 0) return;                                                   //Não há erros nos dados puros, então verifique o e-mail.
 
         const salt = bcryptjs.genSaltSync();                                    //Executa o salt.
         this.body.password = bcryptjs.hashSync(this.body.password, salt)        //Gera o hash no password, antes de registrar.
