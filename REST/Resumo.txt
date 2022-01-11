@@ -1,0 +1,61 @@
+MariaDB | Docker | GCP
+
+Instalamos o Docker e o Container MariaDB no servidor GCP
+
+Comandos Docker
+• verificar status do Docker | MariaDB sudo docker ps
+• parar o servidor sudo docker stop bdmariadb1
+• iniciar docker sudo docker start bdmariadb1
+• restart docker sudo docker restart bdmariadb1
+• remover o container sudo docker rm bdmariadb1
+
+Acessar container MariaDB fora do GCP
+Após instalar o docker e o container MariaDB no servidor GCP, precisamos abrir a porta necessária 3306  através do console do Google para que possamos acessar o MariaDB fora do servidor do google, acessar do PC. Para fazer isso:
+• Instância VM -> Detalhes de Rede -> Regras Firewall -> Criar Regra de Firewall
+• nome: MariaDB -> Destinos: Todas as instâncias da rede -> Intervalos de IP de origem: 0.0.0.0/0
+• porta tcp: 3306 (padrão mysql) -> criar regra
+
+Feito isso, conectamos o DBeaver ao nosso servidor e instalamos o Insomnia
+
+Configurando o ambiente
+- Fizemos a instalação da extensão "editorconfig" para deixar todos os padrões corretos.
+- Instalação do NPM.
+- Instalaremos o Eslint, pacote NPM que forçará a escrever um código mais correto: npx eslint --init + configurações.
+- Instalar extensão "Eslint" para conectar com o NPM Eslint.
+
+Nodemom
+Cria arquivo na raiz do projeto, nodemon.json
+{
+"execMap":{
+    "js": "node -r sucrase/register
+ }
+}
+
++ Adição do "dev" no package.json.
+
+Sucrase
+Padronização do Import/Export do ES6.
+
+
+
+*Dicas*
+
+Terminal
+ctrl+shift+c -> abre terminal na pasta atual.
+
+Eslint
+Para desabilitar a próxima linha: // eslint-disable-next-line ou // eslint-disable-line (na frente da linha)
+Para desabilitar alertas vá em rules.
+
+
+
+
+
+Estruturando a pasta:
+Depois de organizar as pastas dentro de src, vamos instalar o express.
+    Express > npm i express
+
+
+
+
+
