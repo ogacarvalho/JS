@@ -167,4 +167,53 @@ Criando, analisando e manipulando arquivos do sistema.
 
 
 
+Ferramentas essênciais
+Lista das principais ferramentas usadas até então, e uma breve descrição.
+
+• Node.js      | Ambiente de criação remota ao browser.
+• NPM          | Gerenciador de Pacotes do Node.js
+• Webpack      | Transpilador de código, gera o bundle.js arquivo com retro-compatibilidade.                 !Para ser acionado: npm run wp
+• Path         | Gerenciador de caminhos.
+• FileSystem   | Pacote que permite o acesso a pastas do sistema via node.
+• Express      | Microframework que permite a criação de aplicações web.
+• Nodemon      | Essa ferramenta recarrega o servidor toda vez que for salvo, semelhante ao live-server.     !Para ser acionado: npm start
+• MongoDB      | Banco de dados NoSQL (Not Only SQL) conexão com Express via Mongoose.
+• MariaDB      | Diferente do MongoDB este banco de dados trabalha com SQL.
+• EJS          | O EJS é uma engine utilizada pelo view que renderiza HTML com JS.
+• .ENV         | Ocultador de dados sigilosos.
+• Google Cloud | Trata-se de um servidor remoto, que fornece o cloud computing e de lá nossa aplicação deve se conectar com todos os side-components.
+• Nginx        | O famoso "proxy-reverso" é a conexão do cliente com a aplicação, de lá a requisição é redirecionada ao servidor adequado. (GCP)
+• Docker       | Com ele podemos ter acesso a aplicações de modo "portátil".
+• Sucrase      | Faz os módulos de importação e exportação do node, funcionarem como no ES6.
+• Eslint       | Força a escrita correta do código, padrão Airbnb.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

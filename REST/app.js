@@ -1,6 +1,6 @@
-import express from 'express';
+import express from 'express';                                                // Importação do micro-framework;
 
-class App {                                                                                                       // Classe de acionamento do micro-framework
+class App {                                                                   // Construção da base do servidor.
   constructor() {
     this.app = express();
     this.middlewares();
@@ -17,4 +17,4 @@ class App {                                                                     
   }
 }
 
-export default new App().app;     // "new" vai instanciar a classe. "App().app;" -> executando o "express()"
+export default new App().app;                                                // "new" vai instanciar a classe. "App().app;" -> executando o "express()"

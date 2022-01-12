@@ -8,12 +8,12 @@ Para importar utilizamos a palavra "require(./arquivo)";        !Importará o 'm
 
 //Maneiras de se importar dados!
 
-const MODULO = require("./modulo1");
+const MODULO = require("./exportando");
 let axios = require("axios"); //Pacote NPM requisitador de dados, tipo fetch() porém melhor.
 
-let importacaoExclusiva = require("./modulo1").sistema; 
-let chaveEspecifica = MODULO.sistema; //Desse modo, podemos enviar a função armazenada na chave à uma variável.
-let iPessoa = require("./modulo1").Pessoa; //iPessoa (imported) recebe a Classe armazenada em Módulo.
+let importacaoExclusiva = require("./exportando").funcaoAnonima; 
+let chaveEspecifica = MODULO.funcaoAnonima; //Desse modo, podemos enviar a função armazenada na chave à uma variável.
+let iPessoa = require("./exportando").Pessoa; //iPessoa (imported) recebe a Classe armazenada em Módulo.
 
 MODULO.sistema();
 importacaoExclusiva();
@@ -27,3 +27,6 @@ chaveEspecifica();
     } catch(e){console.log(e)};
 
 })();
+
+//O require é a peça fundamental, que permite "importar/puxar" dados do modules.exports de outro arquivo.js
+//Podendo importar propriedades específicas ou o arquivo module inteiro, que pode ter 1 arquivo único, logo "default" ou vários.

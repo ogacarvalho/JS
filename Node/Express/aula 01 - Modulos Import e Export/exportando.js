@@ -20,7 +20,7 @@ const NOME = 'Gabriel'; const SOBRENOME = 'Carvalho';
 const falaNomes = () => console.log(NOME,SOBRENOME);
 exports.nome = NOME;
 exports.sobrenome = SOBRENOME;
-this.sistema = falaNomes;
+this.funcaoAnonima = falaNomes;
 
 //Exportando uma classe
 class Pessoa {
@@ -29,3 +29,5 @@ class Pessoa {
     }
 }
 exports.Pessoa = Pessoa; //Agora o modules.export contém a classe Pessoa.
+
+console.log(module);
