@@ -1,0 +1,91 @@
+Aulas anterior: Criação dos usuários
+
+
+Nesta aula vamos terminar de criar os usuários realizar seu CRUD!
+
+No controller adicionaremos os métodos:
+• index
+• show
+• update
+• delete
+
+
+Index, vamos criar o método que irá listar os usuários:
+
+• Criação do Método:
+  - Crie o método assíncrono envolvido em try que irá listar via User(Model) todos os usuários.
+  - Se ocorrer tudo bem, retorne um JSON com os usuários, se não "report null".
+
+• Criação da Rota:
+  - Em userRoutes, criaremos a rota: router.get('/', userController.index)
+
+• Teste no Insomnia:
+  - Crie uma nova requisição (Index[get]).
+  - Teste o URL: base_url/users/         !Rota no qual estamos trabalhando, no entanto o tipo de requisão é get.
+  - SEND: O retorno esperado é um JSON com a lista de todos os usuários.      !A [API] será consumida com React/React Native, até AXIOS dá.
+
+
+
+Show, vamos criar o método que mostrará um usuário:
+
+  • Criação do Método:
+    - Este método é similar ao anterior, porém precisamos receber um parâmetro, para mostrar o usuário com base nele.
+    - O método de comparação com base no parâmetro de pesquisa, será User.findByPk(id) ["encontre via primarykey"]
+
+    ! A primary key segura o ID do usuário, e é por ela que iremos atualizar, deletar ou mostrar o usuário.
+
+  • Criação da Rota:
+    - router.get('/:id', userController.show);
+
+  • Teste no Insomnia:
+    - Crie uma nova requisição (Show[get)).
+    - Teste o URL: base_url/users/1
+    - SEND: O retorno esperado é um JSON com o usuário referente ao ID.
+
+
+Update, vamos criar o método que atualizará o usuário:
+
+  • Criação do Método:
+    - Ao criar o método adicionamos duas validações, há ID no parâmetro? Há usuário na base de dados?.
+    - Sim? Atualize o usuário com os dados do parâmetro.
+
+  • Criação da Rota:
+    - router.put('/:id', userController.update);
+
+  • Teste no Insomnia:
+    - Crie uma nova requisição (Update[put)).
+    - Teste o URL: base_url/users/1
+    - SEND: O retorno esperado são os parâmetros da requisição (nesse caso o usuário).
+
+    - Erro: Houve um erro, pois estavamos obrigado o bcript fazer o salt de uma senha inexistente, então ele esta enviando números.
+    - Correção: Adicionar uma condicional na função que converte senha em salt, se houver senha faça o salt.
+
+
+Delete, vamos criar o método que deletará o usuário: user.destroy()
+
+  • Criação do Método:
+    - A criação do método é extremamente similar ao Update, a difereça é que ao invés de user.update, iremos alterar para user.destroy.
+
+  • Criação da Rota:
+    - router.delete('/:id', userController.delete);
+
+  • Teste no Insomnia:
+    - Crie uma nova requisição (Delete[delete]).
+    - Teste o URL: base_url/users/1
+    - SEND: O retorno esperado são os parâmetros da requisição (nesse caso o usuário).
+
+    - Erro: Houve um erro, pois estavamos obrigado o bcript fazer o salt de uma senha inexistente, então ele esta enviando números.
+    - Correção: Adicionar uma condicional na função que converte senha em salt, se houver senha faça o salt.
+
+
+Abstração da aula:
+
+
+
+
+
+
+Importante:
+
+! Sempre que a nossa função se relacionar com banco de dados, ela será assíncrona, logo envolva no block try/catch
+! Nós async/await para coisas cuja demora é indeterminada, por exemplo acesso ao banco de dados. Tudo que é acessado e não se sabe o tempo de retorno, use async/await.

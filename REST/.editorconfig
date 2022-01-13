@@ -1,6 +1,5 @@
-# EditorConfig is awesome: https://EditorConfig.org
+# Configurador de padrões universal do VSCode, nos permite evitar divergências entre o código do professor e o código do aluno.
 
-# top-most EditorConfig file
 root = true
 
 [*]

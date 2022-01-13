@@ -16,5 +16,8 @@ module.exports = {
     'no-multi-spaces': 'off',
     'class-methods-use-this': 'off',
     'max-len': 'off',
+    'no-multiple-empty-lines': 'off',
+    'import/first': 'off',
+    'no-param-reassign': 'off',
   },
 };

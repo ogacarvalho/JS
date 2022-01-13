@@ -1,0 +1,142 @@
+Projeto: Api Rest
+Neste projeto vamos estudar somente o back-end, e tudo que for possível, criaremos com classes.                       !Todas as respostas da nossa Api rest serão objetos JSON.
+
+
+
+
+Instalações -> MariaDB | Docker | GCP
+Instalamos o Docker e o Container MariaDB no servidor GCP
+
+Comandos Docker
+• verificar status do Docker | MariaDB sudo docker ps
+• parar o servidor sudo docker stop bdmariadb1
+• iniciar docker sudo docker start bdmariadb1
+• restart docker sudo docker restart bdmariadb1
+• remover o container sudo docker rm bdmariadb1
+
+Acessar container MariaDB fora do GCP
+Após instalar o docker e o container MariaDB no servidor GCP, precisamos abrir a porta necessária 3306  através do console do Google para que possamos acessar o MariaDB fora do servidor do google, acessar do PC. Para fazer isso:
+• Instância VM -> Detalhes de Rede -> Regras Firewall -> Criar Regra de Firewall
+• nome: MariaDB -> Destinos: Todas as instâncias da rede -> Intervalos de IP de origem: 0.0.0.0/0
+• porta tcp: 3306 (padrão mysql) -> criar regra
+
+Feito isso, conectamos o DBeaver ao nosso servidor e instalamos o Insomnia
+
+Configurando o ambiente
+- Fizemos a instalação da extensão "editorconfig" para deixar todos os padrões corretos.
+- Instalação do NPM.
+- Instalaremos o Eslint, pacote NPM que forçará a escrever um código mais correto: npx eslint --init + configurações.
+- Instalar extensão "Eslint" para conectar com o NPM Eslint.
+- Sucrase: padronização do Import/Export do ES6.
+
+Nodemom
+Cria arquivo na raiz do projeto, nodemon.json
+{
+"execMap":{
+    "js": "node -r sucrase/register
+ }
+}
+
++ Adição do "dev" no package.json.
+
+
+
+
+Estruturando o projeto:
+
+• Criaremos uma pasta onde ficará todo código fonte, a pasta 'src', exceto o view pois apenas trabalharemos com back-end.
+- config
+- controller
+- database
+- middlewares
+- models
+- routes
++ uploads !pasta raiz
++ .gitignore: nodemodules | .env | *.jpg
+
+
+• No arquivo App, faremos o build do servidor, instalando e configurando o Express na Class App.
+• Em seguida, vamos criar e configurar as rotas, iniciando com homeRoutes.
+• Criamos o listen da porta, no arquivo server, e testamos: npm run start; (nodemon inicia o live-server do server.js)
+! Porém, nesta aplicação não trabalharemos com o Browser, e sim com o Insomnia.
+
+Configuraremos o Insomnia.
+O projeto será chamado de Escola, cujo objetivo é criar o cadastro de alunos.
+
+• Crie um novo projeto, e dê o nome a ele.
+• Crie um req. collection, e então manage environment.
+- Em base environment: { "base_url": "http://localhost:3001" }                                                         !Se houver mudança no URL só alterar.
+• Na pasta recém criada Home, crie as requisições (new request).
+- Em GET adicione o "base_url" e clique em send: Irá renderizar a página.
+• No controller configuraremos a primeira rota, que retornará um objeto JSON, visto no Insomnia.
+
+
+Sequelize
+Recurso que fará o controle e gerenciamento da base de dados, edição, adição de tabelas e etc.,
+
+Instalação:
+ • Configurações dotenv.
+ • Configurações sequelize.
+ • Criação da base de dados "escola" via DBeaver.
+ • Instala sequelize | mariadb: npm i sequelize mariadb
+ • Instala sequelize cli como developer: npm i -D sequelize-cli
+
+Criação de tabela via Sequelize:
+/api: npx sequelize migration:create --name=alunos                                      !Nunca apague estes arquivos em produção, nem altere.
+
+ • Após configurar o migrations, suba as alterações: npx sequelize db:migrate           !SequelizeMeta mantém histórico.
+ • Criação e configuração do model referente a tabela alunos: 'Aluno.js'
+
+
+Criando usuários
+O primeiro passo é criar a tabela na base de dados "usuários", e para criar a tabela será necessário fazer uma migration com Sequelize.
+
+• Para criar uma migration: npx sequelize migration:create --name=users                                !Sempre cheque o nome da migration
+• Para acionar a migration: npx sequelize db:migrate
+• Para desfazer ações no sequelize: npx sequelize db:migrate:undo ou undo:all
+
+Feita a migração, então criaremos o model
+  Durante as configurações do Model será necessário instalar o Bcrypt, pois realizaremos a validação dos campos.
+
+• Instalar bcrypt: npm i bcryptjs
+• Instalado importamos no Model que será validado.
+• Em seguida adicionamos o Hook que fará a conversão dos dados antes de salvar.
+
+Agora criaremos o Controller
+  Criado o controller e métodos devidamente configurados.
+
+Em seguida, rotas
+  Nas rotas vamos configura-la de acordo com seu tipo de ação.
+  !Lembre-se de carregar a rota no app.js (importar e acionar)
+
+Após configurar a rota, e carrega-la no app.js vamos para o Insomnia.
+
+Insomnia
+Agora estamos trabalhando com USERS, então criaremos uma nova pasta, e atualizaremos a rota, para users, dentro do Insomnia.
+
+
+Erros
+!!!Ao iniciar o Insomnia deu erro, pois esquecemos de carregar o módulo criado, no index em "database".
+!!!Em seguida, após re-enviar novamente um erro, pois não tratamos as nossas promises em Controller, envolvendo-as em um Try/Catch.
+
+
+Dicas
+
+Terminal
+ctrl+shift+c -> abre terminal na pasta atual.
+
+Sequelize
+• O sequelize utiliza o Validator, logo através dele é possível realizar as validações do validator.
+
+Eslint
+Para desabilitar a próxima linha: // eslint-disable-next-line ou // eslint-disable-line (na frente da linha)
+Para desabilitar alertas vá em rules.
+
+Padrão para criação de métodos.
+
+• index          >  lista todos os usuários.   > GET
+• store | create >  cria um novo usuário.      > POST
+• delete         >  apaga um usuário.          > DELETE
+• show           >  mostra um usuário.         > GET
+• update         >  atualiza um usuário.       > PATCH | PUT
+! Em cada controller podemos ter até 5 métodos. (Convenção)
