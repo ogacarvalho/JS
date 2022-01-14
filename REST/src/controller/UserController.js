@@ -24,7 +24,8 @@ class UserController {
   async store(req, res) {
     try {
       const novoUser = await User.create(req.body);                                      // [5]
-      return res.json(novoUser);
+      const { id, nome, email } = novoUser;
+      return res.json({ id, nome, email });
     } catch (e) {
       return res.status(400).json({ errors: e.errors.map((err) => err.message) });       // [2][4]
     }
@@ -32,7 +33,7 @@ class UserController {
 
   async index(req, res) {
     try {
-      const users =  await User.findAll();                                               // Queremos ver todos os usuários
+      const users =  await User.findAll({ attributes: ['id', 'nome', 'email'] });        // Queremos ver todos os usuários
       return res.json(users);                                                            // Se tudo ocorrer corretamente, retorne users.
     } catch (e) {
       return res.json(null);
@@ -42,7 +43,8 @@ class UserController {
   async show(req, res) {
     try {
       const user =  await User.findByPk(req.params.id);                                  // Busque com base na PK
-      return res.json(user);                                                             // Se tudo ocorrer corretamente, retorne users.
+      const { id, nome, email } = user;
+      return res.json({ id, nome, email });                                                             // Se tudo ocorrer corretamente, retorne users.
     } catch (e) {
       return res.json(null);
     }
@@ -50,12 +52,7 @@ class UserController {
 
   async update(req, res) {
     try {
-      if (!req.params.id) {                                                              // Se não houver parâmetros no ID.
-        return res.status(400).json({
-          errors: ['Missing ID'],
-        });
-      }
-      const user =  await User.findByPk(req.params.id);                                  // Busque o usuário...
+      const user =  await User.findByPk(req.userId);                                  // userId -> dados verificados pelo LoginRequired.
 
       if (!user) {                                                                       // Há parâmetros, mas não há usuário?
         return res.status(400).json({
@@ -64,7 +61,8 @@ class UserController {
       }
 
       const update = await user.update(req.body);                                        // Tudo ok, atualize e retorne o usuário com os dados do parâmetro.
-      return res.json(update);
+      const { id, nome, email } = update;
+      return res.json({ id, nome, email });
     } catch (e) {
       return res.status(400).json({ errors: e.errors.map((err) => err.message) });
     }
@@ -72,12 +70,7 @@ class UserController {
 
   async delete(req, res) {
     try {
-      if (!req.params.id) {                                                              // Se não houver parâmetros no ID.
-        return res.status(400).json({
-          errors: ['Missing ID'],
-        });
-      }
-      const user =  await User.findByPk(req.params.id);                                  // Busque o usuário...
+      const user =  await User.findByPk(req.userId);                                  // Busque o usuário...
 
       if (!user) {                                                                       // Há parâmetros, mas não há usuário?
         return res.status(400).json({
@@ -86,7 +79,7 @@ class UserController {
       }
 
       await user.destroy();                                                               // Tudo ok, atualize e retorne o usuário com os dados do parâmetro.
-      return res.json(user);
+      return res.json(null);
     } catch (e) {
       return res.status(400).json({ errors: e.errors.map((err) => err.message) });
     }

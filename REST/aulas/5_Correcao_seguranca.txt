@@ -1,0 +1,13 @@
+Nesta aula vamos limpar o nosso sistema, e corrigir falhas de segurança.
+
+
+Local:
+...
+• ...
+
+
+Abstração:
+Vamos iniciar removendo rotas que não fazem sentido, por exemplo a lista de usuários.
+
+Importante:
+! ...

@@ -17,17 +17,16 @@ Nomes normalmente utilizados
 
 import { Router } from 'express';                                                           // Acionando recurso Routes().
 import  userController  from '../controller/UserController';                                // Minúsculo, pois a Class ja está instaciada, logo seu retorno já sera o objeto.
+import loginRequired from '../middlewares/loginRequired';
 
 const router = new Router();                                                                // 'router' está recebendo as req. de app.js
 
-// userController já instanciado, retorna objeto JSON.
-router.post('/', userController.store);
-// !A primeira rota, tipo "Index" nesse caso "users" não precisa ser especificada aqui, pois ela será especificada no app.js.
-// No entanto, as futuras rotas, além de "users" devem ser específicadas aqui, ex: '/store/'
 
-router.get('/', userController.index);
-router.get('/:id', userController.show);
-router.put('/:id', userController.update);
-router.delete('/:id', userController.delete);
+// router.get('/', userController.index);    // Falha de segurança.
+// router.get('/:id', userController.show);  // Falha de segurança.
+
+router.post('/', userController.store);
+router.put('/', loginRequired, userController.update);
+router.delete('/', loginRequired, userController.delete);
 
 export default router;

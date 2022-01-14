@@ -1,0 +1,41 @@
+
+Nesta aula vamos realizar o login dos usuário via JWT ao invés de Sessions.
+A diferença entre o JWT e o Sessions é que neste caso o cliente que armazena uma chave de login ao invés do Cookie do navegador.
+
+
+Instalação:
+• Em aplicação/: npm i jsonwebtoken
+
+Configurações:
+• No arquivo .ENV adicione as configurações.
+- [TOKEN_SECRET]        !Você mesmo pode criar o token.
+- [TOKEN_EXPIRATION]    !Coloque a quantidade de dias que você quiser.
+
+Controllers:
+Vamos criar um controller [TokenController] que ficará responsável pelo gerenciamento dos tokens.
+• Validações em geral, e redirecionamento.
+• Importação e criação do Token. (JWT)
+
+User Model:
+No user Model, criamos um método, utilizando bcrypt que compara a senha enviada, com a senha armazenada.
+
+Routes:
+Vamos criar uma Routes [tokenRoutes] que ficará responsável por Gerar os Tokens.
+
+App:
+Em seguida, precisamos acionar a rota de tokens, no app.js.
+
+Insomnia:
+• Crie uma nova pasta [Tokens]
+• Nome da requisição: [Store] do tipo [POST].       !Toda requisição POST, recebe parâmetros do usuário, logo possui BODY com JSON.
+• Endereço: [base_url/tokens]
+
+
+
+
+
+
+Importante:
+
+! Quanto mais dias TOKEN_EXPIRATION tiver, menos seguro.
+! Toda vez que uma rota é criada, deve ser registrada/acionada através do app.js

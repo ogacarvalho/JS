@@ -78,13 +78,6 @@ Delete, vamos criar o método que deletará o usuário: user.destroy()
     - Correção: Adicionar uma condicional na função que converte senha em salt, se houver senha faça o salt.
 
 
-Abstração da aula:
-
-
-
-
-
-
 Importante:
 
 ! Sempre que a nossa função se relacionar com banco de dados, ela será assíncrona, logo envolva no block try/catch

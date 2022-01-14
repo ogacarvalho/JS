@@ -1,0 +1,30 @@
+Nesta aula vamos criar um middleware de autenticação do [JWT] JSON WEB TOKEN.
+  Com o middleware só precisaremos adicioná-lo em determinada rota, para gerar a autenticação, colocando o mw no meio do caminho da rota, a fechamos completamente.
+
+
+Middlewares: [loginRequired.js]
+• Verifica se há a propriedade 'authorization' nos headers da requisição. [req.headers]
+- Se não houver -> erro.
+- Se houver, extraia apenas o token usando split.
+
+• Com o token, valide e armazene o Payload em uma constante: { id, email } = dados = payload após a verificação.
+- Push dos dados no corpo da requisição. [req.userId = id / req.userEmail = email]
+- next()
+
+! Se der erro, return 401.
+
+
+Rotas:
+Feito isso, escolheremos uma rota, ao qual adicionaremos o middleware [loginRequired], a partir deste momento a rota selecionada necessita de login.
+• Import do loginRequired e escolha de qual rota ele ficará.
+
+
+Abstração:
+Toda vez que o usuário realizar o Login irá através do LoginRequired ir gerar um Token, este Token que ficará no Headers irá garantir ao usuário, o acesso a páginas pré-definidas e nos mostrará aonde ele está.
+
+
+Importante:
+
+! O envio do Token pode ser feito na aba "Bearer" na opção Bearer Token dentro do insomnia.
+! O envio do Token também pode ser feito na aba Header, criando uma chave [authorization] valor[Bearer [token]]
+! Toda vez que uma rota é criada, deve ser registrada/acionada através do app.js
