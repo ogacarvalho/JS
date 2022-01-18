@@ -1,0 +1,5 @@
+Nesta aula vamos aprender a tratar os arquivos enviados.
+
+1. Em MulterConfig adicione a configuração de filtro.
+2. Movemos as funções do FotoRoutes para o Controller.
+3. No Controller a re-configuramos.

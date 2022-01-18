@@ -1,0 +1,14 @@
+Vamos aprender como salvar fotos na base de dados.
+
+1.  Primeira coisa que fizemos foi atualizar as rotas no insomnia adicionando autenticação nas rotas necessárias.
+2.  Agora, vamos adicionar um mw de LoginRequired no fotoRoutes
+
+3.  Vamos criar uma tabela que vai gerenciar as fotos enviadas.
+3.1 Cria uma migration: npx sequelize migration:create --name=criar-tabela-de-foto-de-aluno
+4.  Após configurar a migration vamos aciona-la: npx sequelize db:migrate
+5.  Configurado, vamos criar o Model de fotos.
+6.  Associe o Model ao Aluno:                                                            ! É possível dizer que "a foto pertence ao aluno": belongsTo ou que o aluno tem fotos.
+6.1 Vamos acionar o Model "Fotos" lá no index.js
+
+
+! Em migrations ficam as configurações da tabela.

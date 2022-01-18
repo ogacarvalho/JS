@@ -19,5 +19,6 @@ module.exports = {
     'no-multiple-empty-lines': 'off',
     'import/first': 'off',
     'no-param-reassign': 'off',
+    camelcase: 'off',
   },
 };

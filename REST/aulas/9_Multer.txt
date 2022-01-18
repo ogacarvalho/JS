@@ -1,0 +1,16 @@
+O Multer permite o upload de arquivos via Express ( que por padrão não faz ).
+
+1.  Instalação: npm i multer
+2.  Crie uma rota específica para fotos.                                                                               !Primeiro um Controller e não esquecer de acionar no App.
+3.  No insomnia teste a rota utilizando multiform configurado para arquivos (files).
+4.  Com a rota pronta agora vamos apenas configurar o Multer
+4.1 Na pasta [config] crie uma arquivo chamado multerConfig.js e o configure.
+4.2 Configure-o na pasta fotoRoutes
+5.  Agora se você enviar a foto via insomnia para testar, verá que ela ficará salva na pasta Uploads.                  !Com nomes automaticamente diferentes.
+
+6.  No controller você pode explorar as chaves da response 'req.file'
+
+
+
+
+! Sempre que importar um módulo nativo ele ficam acima dos imports locais.
