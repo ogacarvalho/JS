@@ -1,0 +1,33 @@
+Nesta aula vamos dar inicio ao CRUD dos alunos.
+
+Abstração:
+Cria Controller, Cria Rota, Aciona no App e testa no insomnia.
+
+Vamo criar uma migration que indicará uma modificação no campo e-mail para Unique
+-> npx sequelize migration:create --name=mudar-email-aluno-unique
+
+Modificações na nova migration:
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    queryInterface.changeColumn(
+      'alunos',
+      'email',
+      {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
+    );
+  },
+
+  down: () => {},
+};
+
+Feito isso, devemos aplicar as novas modificações:
+
+-> npx sequelize db:migrate                                        !Antes de aplicar, remova os dados replicados ou conserte-os;
+
+
+Importante:
+! Toda e qualquer modificação no banco de dados deve ser através de uma migration semântica.

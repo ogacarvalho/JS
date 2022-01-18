@@ -20,6 +20,7 @@ import express from 'express';                                                //
 import homeRoutes from  './src/routes/homeRoutes';
 import userRoutes from  './src/routes/userRoutes';
 import tokenRoutes from  './src/routes/tokenRoutes';
+import alunoRoutes from  './src/routes/alunoRoutes';
 
 class App {                                                                   // Construção da base do servidor.
   constructor() {
@@ -37,6 +38,7 @@ class App {                                                                   //
     this.app.use('/', homeRoutes);
     this.app.use('/users/', userRoutes);
     this.app.use('/tokens/', tokenRoutes);                                    // Ativando listen para esse endereço.
+    this.app.use('/alunos/', alunoRoutes);
   }
 }
 

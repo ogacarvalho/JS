@@ -1,0 +1,15 @@
+O seed permite que criemos vários dados no banco de dados para teste.
+
+
+Instalação:
+api rest/: npx sequelize seed:generate --name criar-usuarios
+• ...
+
+Depois de criar e configurar os seeds, você pode executar o seguinte comando:
+api rest/: npx sequelize db:seed:all
+
+Abstração:
+Vamos iniciar removendo rotas que não fazem sentido, por exemplo a lista de usuários.
+
+Importante:
+! ...

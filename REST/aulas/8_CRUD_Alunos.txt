@@ -1,0 +1,7 @@
+Nesta aula vamos realizar o CRUD da rota Alunos.
+
+1. No model 'Aluno' vamos fazer as validações.
+2. Em seguida, vamos criar o restante das rotas.
+3. Crie as funções das rotas no controller.
+4. Agora vamos criar as requisições no Insomnia para testar as novas rotas.
+5. Adicionar mw Login em algumas rotas.
