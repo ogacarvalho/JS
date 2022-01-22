@@ -1,0 +1,20 @@
+1. Para iniciar o react, no terminal digite:
+-> npx create-react-app .   
+!Se usar ponto, a pasta precisa estar vázia.
+!Ao invés do ponto, se quiser uma pasta com nome, basta colocar o nome.
+
+2. Testes:
+-> npm start -> aciona o react.
+-> npm test  -> aciona modo teste.
+-> npm build -> cria uma pasta para deploy.
+-> npm eject -> abre todos os arquivos de configuração.
+
+
+Criando um componente react:
+1. import React from 'react';
+! Sempre inicie um componente importando o react. [para usar o JSX]
+
+2. No App.js criaremos um componente sem estado simples.
+3. No App.css criaremos nosso próprio estilo.
+
+!Limpamos o HTML

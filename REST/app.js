@@ -11,6 +11,7 @@
 */
 
 import dotenv from 'dotenv';
+import { resolve } from 'path';
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ class App {                                                                   //
   middlewares() {
     this.app.use(express.urlencoded({ extended: true }));                     // Ativando acesso ao parâmetros das requisições.
     this.app.use(express.json());                                             // Ativando retornos em JSON.
+    this.app.use(express.static(resolve(__dirname, 'uploads')));
   }
 
   routes() {

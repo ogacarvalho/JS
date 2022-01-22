@@ -1,0 +1,10 @@
+O que é React?
+O react reage a mudanças de estado, ou seja através do Virtual DOM que é uma representação salva na memória do DOM original, nos montamos nosso componente com HTML e funções. E toda vez que houver uma mudança neste componente ele vai se comparar com o componente anterior e sincronizar a mudança com o DOM original. [Vai ter uma "reação" à mudança de estado.]
+
+Resumindo, o React é uma biblioteca de recursos que permitem desenvolver aplicações front-end de modo componentizado, ou seja é uma arvore de componentes que formarão a interface do usuário porém cada pedaço desta interface será independente. E o react manterá todos estes componentes, e toda vez que um deles for alterado, então o react vai reagir a esta mudança de estado se comparando com o anterior e sincronizando a mudança. Além disso, todo este trabalho é automaticamente transpilado, com pacotes vitais da web.
+
+A única coisa que o React faz é renderizar uma view e se responsabilizar por ela estar sincronizada.
+
+!Não é um framework, é uma lib. [biblioteca].
+!Frameworks são grandes objetos com diversos métodos para facilitar o trabalho.
+!Bibliotecas são vários recursos para facilitar o trabalho.

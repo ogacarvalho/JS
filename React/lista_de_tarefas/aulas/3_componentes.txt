@@ -1,0 +1,67 @@
+!Para ter mais de um elemento na mesma camada use: <></> [fragment] ou <div></div>;
+!Alguns atributos são escritos diferentes, para evitar conflitos.
+!Para escrever JavaScript dentro do JSX usamos as {}.
+!O App.js que está retornando o nosso component statefull Main.
+
+
+
+Componente Statefull: Reagindo a mudanças de estado
+
+-> Primeiro devemos importar o React e a Classe Component para usarmos seus métodos, logo após podemos criar nossa classe com herança para Component o que possibilitará o uso de seus métodos. Usando Class Fields um novo recurso do JS criamos um objeto literal para representar o estado, com a chave "novaTarefa", o render() é necessário para representações virtuais com mudança de estado ou seja, Componentes Statefull ele se responsabilizará por renderizar e sincronizar as mudanças, dentro dele aplicamos o nosso JSX que se trata de um html que escuta mudanças no input e aciona nosso método que na mudança de estado, adiciona o valor do input na chave novaTarefa.
+
+Resumo:
+ > Importe o React e o Component
+ > Crie a Classe [Export Default] [Com Herança para Components]
+ > Crie o State com Class Fields [Objeto literal] [setState para poder modificá-lo]
+ > Render() para aplicar seu JSX.
+
+
+
+Componentes Statefull
+
+import React, { Component } from 'react';
+
+export default class Main extends Component {
+
+  state = {                                             // "Class Fields" recurso novo.
+    novaTarefa: '',
+  };
+
+  handleChange = (e) => {                               // 'handleChange' para esse tipo função. É uma convenção.
+    this.setState({
+      novaTarefa: e.target.value,
+    });
+  }
+
+  render() {
+    const { novaTarefa } = this.state;
+
+    return (
+      <div className='main'>
+        <h1>{novaTarefa}</h1>
+
+        <form action='#'>
+          <input onChange={this.handleChange} type='text' />
+          <button type='submit'>Enviar</button>
+        </form>
+
+      </div>
+    );
+  }
+};
+
+
+
+Componentes Stateless
+
+  import React from 'react';
+  import './App.css';
+
+  export default function App() {
+    return (
+      <>
+        <h1>Hello World!</h1>
+        <p>Fala pessoal!</p>
+      </>
+    );
+  }

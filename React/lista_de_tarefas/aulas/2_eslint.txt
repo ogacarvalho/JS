@@ -1,0 +1,20 @@
+1. Iniciamos a aula configurando o editorconfig.
+
+
+2. Para instalar o Eslint, no terminal digite:
+-> npm i eslint babel-eslint --save-dev
+
+3. Configurar o ESlint [requer extensão 'Eslint']
+-> npx eslint --init
+  -> To check sintax, find problems, and enforce code style.
+  -> Import / Export
+  -> React
+  -> TypeScript -> N
+  -> Browser
+  -> Popular Style Guide
+  -> Airbnb
+  -> JS
+
+4. No arquivo [.eslintrc.js]
+-> Antes de parserOptions adicione: [ parser: '@babel/eslint-parser', ]
+-> Embaixo do EcmaVersion: [ requireConfigFile: false ]

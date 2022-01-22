@@ -1,0 +1,13 @@
+Queremos personalizar o botão enviar e adicionar um ícone, para isso vamos instalar uma biblioteca do React. [React-icons]
+
+Instalação [React-Icons]:
+-> npm i react-icons
+
+Importe-o no local desejado:
+-> import { FaPlus } from 'react-icons/fa';
+
+No JSX
+-> <FaPlus/>  [Trata-se de um símbolo de + ]
+
+
+Depois setamos alguns styles no css e por último adicionamos um valor dinâmico ao atributo value do input.
