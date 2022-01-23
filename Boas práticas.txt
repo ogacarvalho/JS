@@ -1,34 +1,26 @@
 Boas práticas
 As boas práticas são fundamentais para manter a saúde do seu código, tornando sua manutenção simples e seu perfil de programador elevado.
 
-• Colaborações são modularizadas!
-• Códigos profissionais são transpilados e modularizados.
-• Nunca deixe seu código em escopo global, crie funções.
-• O throw new Error('..') irá lançar o erro diretamente para o catch(..).
+• Sempre que possível desenvolva códigos usando Classes para garantir o padrão OOP.
+• Aplicações devem ser Rest/Restful compartimentalizadas seguindo padrão MVC e OOP [Classes]
 • Sempre que precisar criar chaves privadas use o Symbol.
-• Sempre desenvolva o seu código de modo particionado.
-• Programar em inglês
-• Recomendado utilizar camelCase.
+• Sempre programe em inglês utilizando camelCase.
 • Sempre que possível declare utilizando const, e se fizer use maiúsculas.
-• Os arquivos em JavaScript devem estar dentro da pasta js.
-• Sempre selecione elementos utilizando QuerySelector.
 • Sempre que possível utilize arrow function simplificada ou o mais próximo disso. 
 • Se possível cada função deve executar apenas um código por vez. 
-• Sempre utilizar operador de comparação estrito " === " ou " !== ".
-• Sempre utilize parâmetros e argumentos em sua funções.
 • Operador Ternário ou Short-Circuit pode otimizar a performance do seu código.
 • Se a função tiver sinal de atribuição, é obrigatório o uso de ponto e vírgula.
 • Toda vez que for usar estrutura de repetição reflita qual estrutura é a melhor escolha.
 • Nunca esqueça de tratar os erros com Try, Catch( .. ) e Finally
+• O throw new Error('..') irá lançar o erro diretamente para o catch(..).
 • Não use multiplos escutadores, re-use o mesmo, isso tornará seu código mais performático (Exemplo cronômetro).
-• Quando a condição tem retorno booleano, não precisa de true | false apenas retorne a condição exemplo:  return valor > 10 ao invés de um ternário.
 
 Dicas
 Informações que poderão ser úteis. 
 
 • Formate textos com Slice( )!
 • Lembre-se do Curto-Circuíto: Se ABC for true && faça isso!
-• Quando trabalhar com AJAX ou Requisições (XML), considere o uso de Fetch(), torna o trabalho ainda mais simples.
+• Quando trabalhar com AJAX ou Requisições (XML), considere o uso de Fetch(), ou AXIOS o que torna o trabalho ainda mais simples.
 • Para gerar letras use: String.fromCharCode( .. )
 • Quando trabalhar com objetos ou arrays considerar o uso de atrib. por desestruturação e estruturação de dados com o uso de new Map( ).
 • Só use o innerHTML se seu código contiver tags html se não, use o innerText.
@@ -40,8 +32,7 @@ Informações que poderão ser úteis.
 • Para salvar elementos no navegador, use LocalStorage.
 • Sabendo que toda função é um objeto de primeira-classe, busque usar dos seus recursos.
 • Ficar atento aos métodos eles são extremamente úteis como: "eval( .. ), slice( 0, -1 )..."
-• A função-construtora foi desenvolvida para criar objetos.
-• Se você precisa organizar o seu programa em etapas ou criar uma sequência de execução, considere o uso de Funções Geradoras.
+• Se você precisa organizar o seu programa em etapas ou criar uma sequência de execução, considere o uso de Funções Geradoras. [yields]
 • Cuidado ao "guardar" arrays ou objetos, pois valores por referência são apenas indicadores de endereço na memória, portanto se houver alteração tanto na variável quanto na array, ambos modificarão o estado da memória referenciada. A única forma de duplicar uma array é criando outra igual.
 • Acessar o maior número possível Number.MAX_VALUE
 • O método splice( .. ) fornece muito mais autonômia na manipulação de arrays.
@@ -50,7 +41,7 @@ Informações que poderão ser úteis.
 • Object.defineProperty para modificar as propriedades de qualquer objeto, para não criar loops trabalhe com let no this.
 
 This
-A palavra this, respeita o produto da função construtora, e não  a própria função construtora. Portanto, todo produto desta função terá o respeito da palavra this ou seja todo  objeto criado pela função construtora.
+A palavra this, sempre estará se referindo a instância da classe construtora ao qual ela pertence no momento.
 
 Variáveis
 A variável aponta para o endereço na memória e o endereço da memória aponta para o valor.
@@ -61,11 +52,12 @@ Objetos
 • Para modificar as suas propriedades use Object.defineProperty( .. )
 • Um objeto dentro de uma variável é apenas um link para um endereço de memória.
 • Para de fato copiar objetos use: let abc =  {...objeto}.
-• (forEach) para manipular ou iterar objetos:   objeto.forEach(obj => obj.chave)   !Para cada laço do objeto, retorne a chave x.
-• For of e métodos do Object devem ser utilizados para manipular objetos.
+• (forEach ou for of) para manipular ou iterar objetos:   objeto.forEach(obj => obj.chave)   !Para cada laço do objeto, retorne a chave x.
 • Sempre que possível use notação dinâmica para atribuir e selecionar propriedades: objeto[propriedade]
 
 Funções em Ordem Específica
+• Async e Await: Sempre que seu código se relacionar com a internet ou qualquer recurso remoto é obrigatório o seu uso.
+! Eles servem para tornar possível a comunicação com a internet que é instável através da otimização assíncrona.
 • Sempre que precisar executar múltiplas funções de modo ordenado, considere Promises( .. ) com Async e Await envoltos em um Try Catch.
 • Lembre-se que os parâmetros das funções também podem ser usados de modo Booleano, em conjunto do Short-Circuit -> função(true?, true?, true?){...}
 
@@ -184,7 +176,7 @@ Lista das principais ferramentas usadas até então, e uma breve descrição.
 • Google Cloud | Trata-se de um servidor remoto, que fornece o cloud computing e de lá nossa aplicação deve se conectar com todos os side-components.
 • Nginx        | O famoso "proxy-reverso" é a conexão do cliente com a aplicação, de lá a requisição é redirecionada ao servidor adequado. (GCP)
 • Docker       | Com ele podemos ter acesso a aplicações de modo "portátil".
-• Sucrase      | Faz os módulos de importação e exportação do node, funcionarem como no ES6.
+• Sucrase      | Faz os módulos de importação e exportação do node, funcionarem como no ES6, é uma espécie de transpilador. [Tipo babel]
 • Eslint       | Força a escrita correta do código, padrão Airbnb.
 
 
