@@ -4,6 +4,6 @@ import loginRequired from '../middlewares/loginRequired';
 
 const router = new Router();
 
-router.post('/', loginRequired, fotoController.store); // ...single('qual o nome do campo que vai receber o arq?') !ta no insomnia.
+router.post('/', loginRequired, fotoController.store);
 
 export default router;

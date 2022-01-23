@@ -1,0 +1,84 @@
+1. Coloque em um local limpo fora do seu branch.
+
+Preparar a API para produção (Criar a build):
+1. Vamos adicionar um novo script chamado build que vai fazer o papel do "babel"
+-> package.json: script -> "build": "sucrase ./src -d ./dist --transforms imports"      !Isso vai converter o importe para o padrão do node.js
+-> "start": "node dist/server.js"
+-> Movemos app.js e server.js para dentro da pasta src.
+-> Pede para o sucrase fazer o build: npm run build
+
+Criação dos repositórios:
+1. Na pasta local: git init
+2. Adicionar todos os U: git add .
+3. Commit: git commit -m 'Adicionando arquivos'
+Pronto!
+
+Agora vamos criar um repositório no servidor e adicioná-lo aqui em nosso computador.
+
+Servidor:
+1. Criar a pasta de distribuição do projeto e a pasta repositório: api_rest + repo_api_rest
+
+2. Na pasta repo_api_rest, vamos criar o repositório:
+-> git init --bare
+
+3. Agora na pasta api_rest, vamos adicionar o repositório recém criado:
+-> git init
+-> git config nome e email.
+-> git remote add origin /home/ogacarvalho/repo_api_rest  !origin é o nome escolhido.
+-> git remote -v (para ver os repositórios)
+
+Local:
+1. Agora vamos conectar a nossa pasta api_rest [local] ao repositório [servidor] recém criado.
+-> .../api_rest/: git remote add origin 34.151.249.192:repo_api_rest
+
+2. Em seguida faça o push dos arquivos da pasta api_rest para o repositório remoto.
+-> git push origin master [-u opcional, após isso apenas git push]
+
+Servidor:
+1. Agora na pasta de distribuição [api_rest] vamos baixar o conteúdo enviado ao repositório.
+-> git pull origin master
+
+2. Dentro da pasta de distribuição, vamos adicionar o arquivo .ENV.
+-> nano .env
+-> copie e cole os dados !Altere o host que era o IP do servidor para local host.
+
+3. Vamos agora instalar o nodemodules e testar a api.
+-> npm i
+-> npm start
+
+4. Vamos rodar com PM2 [Gerenciador de aplicações]
+-> pm2 start /home/ogacarvalho/api_rest/dist/server.js --name=api          ![ponto de entrada da api]
+-> pm2 ls
+-> testar: curl http://localhost:3001  res: "index" -> Ótimo.
+
+5. Agora vamos criar o nosso intermediador [proxy-reverso] com nginx,  que vai escutar as requisições da porta 80 do nosso endereço.
+-> cd /etc/nginx/sites-enabled/                                     !O NginX ja está configurado e instalado por conta do projeto anterior.
+-> sudo cp nome-do-dominio nome-do-novo-dominio                     !Vamos duplicar os arquivos.
+-> Se for um arquivo HTTPS com dominio os atualize, se for apenas http com ip atualize a porta.
+-> Se for HTTPS, veja a continuação das configurações -> https://www.udemy.com/course/curso-de-javascript-moderno-do-basico-ao-avancado/learn/lecture/16961038#overview
+
+! Não é possível usar dois dominíos no mesmo IP.
+! Para ver a nossa API atual, podemos desativar [apagando o arquivo] da api anterior no sites enabled.
+! Em seguida restart no nginx: sudo systemctl restart nginx
+
+
+No insomnia:
+1. Vamos duplicar o ambiente (dev e prod)
+2. No ambiente de produção, vá em 'manage enviroments' e altere o dominío para o seu IP.
+
+
+Servidor:
+!Toda vez que atualizar a API, faça o restart do PM2
+-> pm2 restart api
+
+Atualizando:
+
+[local]
+-> npm run build
+-> git add .
+-> git commit -m 'abc'
+-> git push origin master
+
+[servidor dist]
+-> git pull origin master
+-> pm2 restart api

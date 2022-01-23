@@ -1,49 +1,40 @@
-/* App, tudo que for possível será feito com Class.
-1. Importe o Express                                                          !Import/Export === ES6 by Sucrase
-2. Crie o App, a partir dele faremos o build do servidor.
-3. Exportação somente do atributo app (express), no modo Default.
+// Este é o arquivo que dirige a aplicação, estamos na diretoria.
+// Aqui ficam os recursos essênciais para o funcionamento da nossa aplicação que e então são ordenados conforme a necessidade e acionados.
 
+import dotenv from 'dotenv';                                                  // Gerenciador de dados sigilosos.
+import { resolve } from 'path';                                               // Gerenciador de caminhos.
 
+dotenv.config();                                                              // Carrega o arquivo [.env]
 
+import './src/database';                                                      // Carrega a base de dados.
+import express from 'express';                                                // Carrega o servidor [microframework]
 
+import homeRoutes from  './src/routes/homeRoutes';                            // Gerenciador de rotas da Home
+import userRoutes from  './src/routes/userRoutes';                            // Gerenciador de rotas do Usuário
+import tokenRoutes from  './src/routes/tokenRoutes';                          // Gerenciador de rotas do Token
+import alunoRoutes from  './src/routes/alunoRoutes';                          // Gerenciador de rotas do Aluno
+import fotoRoutes from  './src/routes/fotoRoutes';                            // Gerenciador de rotas da Foto
 
-!! Toda vez que o App for instânciado (new), automaticamente executará seus atributos.
-*/
-
-import dotenv from 'dotenv';
-import { resolve } from 'path';
-
-dotenv.config();
-
-import './src/database';                                                      // Iniciando base de dados, ao iniciar servidor.
-
-import express from 'express';                                                // Importação do micro-framework;
-import homeRoutes from  './src/routes/homeRoutes';
-import userRoutes from  './src/routes/userRoutes';
-import tokenRoutes from  './src/routes/tokenRoutes';
-import alunoRoutes from  './src/routes/alunoRoutes';
-import fotoRoutes from  './src/routes/fotoRoutes';
-
-class App {                                                                   // Construção da base do servidor.
+class App {                                                                   // Classe que controla todo sistema [Aplicação]
   constructor() {
-    this.app = express();                                                     // Atributo 'app' está carregando o framework.
-    this.middlewares();                                                       // Aciona middlewares().
-    this.routes();                                                            // Aciona routes().
+    this.app = express();                                                     // O atributo [app] representa e aciona o Express.
+    this.middlewares();                                                       // Aplicação aciona middlewares().                         !Executados independente de requisição.
+    this.routes();                                                            // Aplicação aciona routes().
   }
 
-  middlewares() {
-    this.app.use(express.urlencoded({ extended: true }));                     // Ativando acesso ao parâmetros das requisições.
-    this.app.use(express.json());                                             // Ativando retornos em JSON.
-    this.app.use(express.static(resolve(__dirname, 'uploads')));
+  middlewares() {                                                             // Middlewares
+    this.app.use(express.urlencoded({ extended: true }));                     // Aciona recurso, que dá acesso aos paramêtros das requisições.
+    this.app.use(express.json());                                             // Aciona comunicação por JSON e apenas JSON.
+    this.app.use(express.static(resolve(__dirname, 'uploads')));              // Aciona recurso que recebe arquivos estáticos e os envia para o 'uploads'.
   }
 
-  routes() {
-    this.app.use('/', homeRoutes);
-    this.app.use('/users/', userRoutes);
-    this.app.use('/tokens/', tokenRoutes);                                    // Ativando listen para esse endereço.
-    this.app.use('/alunos/', alunoRoutes);
-    this.app.use('/fotos/', fotoRoutes);
+  routes() {                                                                  // Rotas
+    this.app.use('/', homeRoutes);                                            // Para Home     acione a rota   [ / ] === [ Index ]
+    this.app.use('/users/', userRoutes);                                      // Para Usuários acione a rota   [ /users/ ]
+    this.app.use('/fotos/', fotoRoutes);                                      // Para Fotos    acione a rota   [ /fotos/ ]
+    this.app.use('/tokens/', tokenRoutes);                                    // Para Tokens   acione a rota   [ /tokens/ ]
+    this.app.use('/alunos/', alunoRoutes);                                    // Para Alunos   acione a rota   [ /alunos/ ]
   }
 }
 
-export default new App().app;                                                 // Já instânciamos por praticidade. evita: const Abc = new xyz.
+export default new App().app;                                                 // Este arquivo retorna a propriedade 'app' que é a representação do Express.

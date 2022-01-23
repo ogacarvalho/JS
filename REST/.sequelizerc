@@ -1,14 +1,10 @@
-/*
-Neste arquivo, configuramos todas as conexões entre a base de dados que está no servidor remoto e o Express via Sequelize.
-Ou seja, toda comunicação ocorre através dessas configurações.
-*/
+// Este arquivo permite a comunicação entre a base de dados que está remota e a nossa aplicação via Sequelize.
 
+const { resolve } = require('path');                                              // Gerenciador de Caminhos do Node
 
-const { resolve } = require('path');
-
-module.exports = {
-  config: resolve(__dirname, 'src', 'config', 'database.js'),
-  'models-path': resolve(__dirname, 'src', 'models'),
-  'migrations-path': resolve(__dirname, 'src', 'database', 'migrations'),              // Histórico de alterações na base de dados.
-  'seeders-path': resolve(__dirname, 'src', 'database', 'seeds'),
+module.exports = {                                                                // arquivo retorna: { config: ...}
+  config: resolve(__dirname, 'src', 'config', 'database.js'),                     // carrega arquivo de configuração da base de dados.
+  'models-path': resolve(__dirname, 'src', 'models'),                             // carrega models
+  'migrations-path': resolve(__dirname, 'src', 'database', 'migrations'),         // carrega migrations
+  'seeders-path': resolve(__dirname, 'src', 'database', 'seeds'),                 // carrega seeds
 };

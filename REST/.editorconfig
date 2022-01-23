@@ -1,4 +1,4 @@
-# Configurador de padrões universal do VSCode, nos permite evitar divergências entre o código do professor e o código do aluno.
+# Atalho para configurações globais
 
 root = true
 

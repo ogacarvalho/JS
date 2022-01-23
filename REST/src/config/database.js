@@ -1,6 +1,6 @@
 // Configurações de conexão com a base de dados, que serão acessadas pelo sequelize (Gerenciador)
 
-require('dotenv').config();
+require('dotenv').config();                                               // Gerenciador de dados sigilosos
 
 module.exports = {
   dialect: 'mariadb',                                                     // Linguagem da base de dados? MariaDB
@@ -9,11 +9,11 @@ module.exports = {
   username: process.env.DATABASE_USERNAME,                                // Login do servidor: root
   password: process.env.DATABASE_PASSWORD,                                // Senha do servidor: xyz
   database: process.env.DATABASE,                                         // Nome da base de dados: escola
-  define: {
+  define: {                                                               // Configurações de formatação da base de dados
     timestamps: true,
     underscored: true,
     underscoredAll: true,
-    createdAt: 'created_at',                            // Correção de bug do conversor de CamelCase.
+    createdAt: 'created_at',
     updatedAt: 'updated_at',
   },
   dialectOptions: {
