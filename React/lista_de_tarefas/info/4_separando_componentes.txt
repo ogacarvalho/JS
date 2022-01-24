@@ -1,0 +1,180 @@
+Agora vamos componentizar os códigos abaixo:
+
+
+////////////////////////////////////////// APLICAÇÃO NÃO COMPONENTIZADA
+
+
+import React, { Component } from 'react';
+import { FaPlus } from 'react-icons/fa';
+
+import { FaEdit, FaWindowClose } from 'react-icons/fa';
+import './Main.css';
+
+export default class Main extends Component {
+
+  state = {
+    novaTarefa: '',
+    tarefas: [],
+  };
+
+  componentDidMount(){
+    const memoria = JSON.parse(localStorage.getItem('memoria'));
+
+    if(!memoria) return;
+
+    this.setState({
+      tarefas: [...memoria],
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    const { tarefas } = this.state;
+    if( tarefas === prevState.tarefas) return;
+
+    localStorage.setItem('memoria', JSON.stringify(tarefas));
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { tarefas } = this.state;
+    let { novaTarefa } = this.state;
+    novaTarefa = novaTarefa.trim();
+
+    if(tarefas.indexOf(novaTarefa) !== -1) return;
+
+    const _tarefas = [...tarefas];
+
+    this.setState({
+      tarefas: [..._tarefas, novaTarefa],
+      novaTarefa: '',
+    })
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      novaTarefa: e.target.value,
+    });
+  }
+
+  handleEdit = (e, index) => {
+    const { tarefas, novaTarefa } = this.state;
+    let _tarefas = [...tarefas];
+
+    _tarefas[index] = novaTarefa
+    if(!novaTarefa) return;
+
+    this.setState({
+      tarefas: [..._tarefas],
+      novaTarefa: '',
+    })
+  }
+
+  handleDelete = (e, index) => {
+    const { tarefas } = this.state;
+    let _tarefas = [...tarefas];
+
+    _tarefas.splice(index, 1);
+
+    this.setState({
+      tarefas: [..._tarefas],
+    })
+  }
+
+
+  render() {
+
+    const { novaTarefa, tarefas } = this.state;
+    return (
+
+
+      <div className='main'>
+        <h1>Lista de tarefas</h1>
+
+        <form onSubmit={this.handleSubmit} action='#' className='form'>
+          <input onChange={this.handleChange} type='text' value={novaTarefa} />
+          <button type='submit'> <FaPlus/> </button>
+        </form>
+
+        <ul className='tarefas'>
+          {tarefas.map((tarefa, index) => (
+            <li key={tarefa}>
+              {tarefa}
+              <span>
+              <FaEdit onClick={(e) => this.handleEdit(e, index)} className='edit'/>
+              <FaWindowClose onClick={(e) => this.handleDelete(e, index)} className='delete'/>
+              </span>
+            </li>
+            ))}
+        </ul>
+      </div>
+    );
+  }
+}
+
+
+
+/////////////////////////////////////////
+
+
+
+
+
+Vamos separar o formulário e a lista de tarefas do componente principal [main]
+
+!Cada componente deverá ser [Stateless]
+!As propriedades [parâmetros] que serão utilizados pelo componente principal precisam ser validadas, para isso instalamos um pacote do node chamado prop-types.
+-> npm i prop-types
+
+
+
+
+
+///////////////////////////////////////// COMPONENTE FORMULÁRIO
+Exemplo de separação de um Componente:
+
+import React from 'react';                                                              // Carrega o React
+import PropTypes from 'prop-types';                                                     // Carrega o Validador de parâmetros.
+import { FaPlus } from 'react-icons/fa';                                                // Carrega Ícones React do formulário.
+import './Form.css';                                                                    // Carrega o CSS do formulário.
+
+
+export default function Form({handleSubmit, handleChange, novaTarefa}) {                // Export do componente stateless + parâmetros de referência.
+  return (
+    <form onSubmit={handleSubmit} action='#' className='form'>
+    <input onChange={handleChange} type='text' value={novaTarefa} />
+    <button type='submit'> <FaPlus/> </button>
+  </form>
+  );
+}
+
+
+
+// Form.defaultProps = {                                                                 // Se o uso da prop. não for obrigatória [!isRequired]
+//   novaTarefa: 'Valor padrão'                                                          // Set um valor padrão.
+// }
+
+// Validação do componente
+Form.propTypes = {                                                                       //Propriedade? | Tipo? | Obrigatória?
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  novaTarefa: PropTypes.string.isRequired,
+}
+
+// !Para que os parâmetros de referência possam ser utilizados precisamos primeiro validar: [Requer: npm i prop-types + import]
+
+////////////////////////////////////////
+
+
+Explicação:
+
+Para funcionar adequadamente, você deve escrever seu código utilizando Orientação por Objeto [Classes] e já deixar explicito a intenção de separação, nomeando claramente cada elemento.
+
+Passos:
+
+0. Crie a pasta do componente, com os arquivos JS e CSS
+1. Extraia os elementos do componente principal [statefull] para dentro do componente remoto [stateless].
+2. Carregue os pacotes necessários, e crie as conexões entre os arquivos.
+3. Funções e Variáveis devem ser transformadas em Parâmetros para serem utilizados pelo componente principal.
+!  Após transformá-los em parâmetros, [referẽncias] será necessário valida-los com o uso do pacote prop-types.
+5. Feita a validação, <carregue/> a função que representa o componente stateless dentro do JSX do componente principal.
+6. Por fim, conecte os parâmetros aos métodos do componente principal.

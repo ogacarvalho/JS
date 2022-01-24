@@ -8,3 +8,12 @@ A única coisa que o React faz é renderizar uma view e se responsabilizar por e
 !Não é um framework, é uma lib. [biblioteca].
 !Frameworks são grandes objetos com diversos métodos para facilitar o trabalho.
 !Bibliotecas são vários recursos para facilitar o trabalho.
+
+
+Projeto Lista de Tarefas
+
+O projeto é simples, primeiro fazemos o "build" da aplicação React ou utilizamos um template já existente, feito isso começando a criação da nossa aplicação, criando o arquivo main [componente statefull] que fará a sincronização dos estados e a exportação para o arquivo app, é importante não esquecer de fazer o extends para a classe Components pois usaremos seus recursos.
+
+No arquivo main, teremos a união dos componentes e a conexão dos seus parâmetros com os métodos que darão a dinãmica para a aplicação, além disso métodos extras como armazenamento local também podem ser escritos diretamente no Main.
+
+A criação dos componentes é igualmente simples, cada parte da aplicação será um componente stateless e sua única função será exportar o bloco de código JSX com seu CSS separado e fazer a validação dos parâmetros caso use métodos, para serem conectados no arquivo main.

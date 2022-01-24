@@ -2,7 +2,7 @@ Boas práticas
 As boas práticas são fundamentais para manter a saúde do seu código, tornando sua manutenção simples e seu perfil de programador elevado.
 
 • Sempre que possível desenvolva códigos usando Classes para garantir o padrão OOP.
-• Aplicações devem ser Rest/Restful compartimentalizadas seguindo padrão MVC e OOP [Classes]
+• Aplicações devem ser Rest/Restful compartimentalizadas seguindo padrão MVC e OOP [Classes] e consumidas com React
 • Sempre que precisar criar chaves privadas use o Symbol.
 • Sempre programe em inglês utilizando camelCase.
 • Sempre que possível declare utilizando const, e se fizer use maiúsculas.
@@ -39,6 +39,9 @@ Informações que poderão ser úteis.
 • Ao trabalhar com Arrays considere o uso de Filter, Map ou Reduce
 • Para congelar qualquer elemento/objeto e não permitir alterações é possível utilizar o Object.freeze(..)
 • Object.defineProperty para modificar as propriedades de qualquer objeto, para não criar loops trabalhe com let no this.
+
+React
+• Não podemos editar o estado diretamente.
 
 This
 A palavra this, sempre estará se referindo a instância da classe construtora ao qual ela pertence no momento.

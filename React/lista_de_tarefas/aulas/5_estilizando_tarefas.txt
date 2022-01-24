@@ -1,3 +1,0 @@
-Vamos criar tarefas fictícias.
-
-1. Primeiro, adicione um novo estado, no Class Fields
