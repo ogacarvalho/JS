@@ -1,0 +1,4 @@
+Boas práticas
+As boas práticas são fundamentais para manter a saúde do seu código, tornando sua manutenção simples e seu perfil de programador elevado.
+
+• Sempre faça a separação dos seus componentes em pastas.
