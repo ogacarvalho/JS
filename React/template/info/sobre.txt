@@ -1,0 +1,36 @@
+Criação template [completo] para projetos React!
+
+1. Em uma nova pasta, no terminal digite:
+-> npx create-react-app .
+
+
+2. Em seguida, [relativamente opcional] instale o Eslint e o Prettier:
+-> npm i @babel/eslint-plugin prettier eslint-config-prettier eslint-plugin-prettier -D
+-> instalar também: npm install --save-dev @babel/preset-react
+
+
+3. Configurando Eslint:
+-> npx eslint --init
+-> Terceira opção [Check Syntax and Force Code Style]
+-> JavaScript Modules [Import/Export]
+-> React
+-> TypeScript [N]
+-> Browser
+-> Popular Style
+-> Airbnb
+-> JavaScript
+-> Arquivo de configuração gerado com sucesso!
+
+
+4. Configurar: eslintrc && prettierrc && editorconfig.
+
+
+Requisitos:
+
+Extensões:
+-> Editor Config for VS Code [Garante configurações universais para a aplicação]
+-> Eslint
+
+!EditorConfig: Recurso que torna as configurações desta aplicação universais para todos os desenvolvedores.
+!Eslint: Recurso que força o programador a ter boas práticas.
+!Prettier: Recurso que força o programador a escrever um código mais "bonito".

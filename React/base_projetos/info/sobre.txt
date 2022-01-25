@@ -1,0 +1,6 @@
+Este arquivo é uma versão modificada do template.
+
+Modificações:
+
+1. Remoção de arquivos "desnecessários".
+2. Alteração no .gitignore
