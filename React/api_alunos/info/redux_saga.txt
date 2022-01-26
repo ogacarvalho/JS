@@ -1,0 +1,9 @@
+Vamos substituir o BrowserRouter pelos recursos do Redux Saga.
+-> BrowserRouter = Router
+
+Dentro da pasta services, instalar e configurar o arquivo: history
+-> npm i history
+Para fazer o curso instalar a versão específica: npm i history@4.10.1
+Em seguida, carregue o recurso no App.js e o aplique na tag 'Router'
+
+!Os estados do redux [São acessíveis globalmente]

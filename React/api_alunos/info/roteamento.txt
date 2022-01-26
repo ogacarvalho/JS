@@ -1,0 +1,36 @@
+Usaremos o react-router-dom que será o recurso da biblioteca react responsável por fazer o roteamento da nossa aplicação.
+
+
+
+1. Na pasta routes dentro de src criaremos o index que fará o gerenciamento das rotas da nossa aplicação.
+
+
+2. Importaremos os recursos necessários para fazer o roteamento que substituirá as nossas 'tags' [a].
+! BrowserRoutes:   Busca as rotas existentes.
+! Switch (Routes): Serve para garantir que será renderizado uma rota por vez [pois é possível renderizar duas rotas na mesma requisição]
+! Route:           Indica a rota e o componente a ser renderizado.
+
+3. Feita a configuração da rota desejada, carregamos o componente que gerencia as rotas [Routes] no App.js e o aplicamos no JSX.
+
+! Instalar: npm i react-router-dom@5.2.0 [A versão 6 está muito alterada, requer um curso extra atualizado]
+
+
+! O BrowserRouter será substituído por Redux Saga
+
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';        !
+
+import GlobalStyle from './styles/Global';
+
+import Header from './components/Header';
+import Routes from './routes';
+
+export default function App() {
+  return (
+    <BrowserRouter>                                      !
+      <Header />
+      <Routes />
+      <GlobalStyle />
+    </BrowserRouter>                                     !
+  );
+}
