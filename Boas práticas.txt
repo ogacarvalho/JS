@@ -18,6 +18,7 @@ As boas práticas são fundamentais para manter a saúde do seu código, tornand
 Dicas
 Informações que poderão ser úteis. 
 
+• Sempre que precisar compartilhar estados ou dados globalmente use Redux.
 • Formate textos com Slice( )!
 • Lembre-se do Curto-Circuíto: Se ABC for true && faça isso!
 • Quando trabalhar com AJAX ou Requisições (XML), considere o uso de Fetch(), ou AXIOS o que torna o trabalho ainda mais simples.

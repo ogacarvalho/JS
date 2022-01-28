@@ -1,0 +1,17 @@
+Em src/store: criamos uma pasta chamada modules nela teremos as pastas para cada componente/caso de redux e nela armazenaremos actions e os reducers.
+
+
+As actions simplesmente vão armazenar o type do dispatch:
+///// -> Em src/store/example/actions.js teremos:
+
+    export function exemplo () {
+      return {
+        type: 'Exemplo',
+     };
+    }
+
+
+então, no componente desejado [login/index.js] importamos o arquivo, e então carregamos a função dentro do dispatch(arquivo.function())
+/////
+
+

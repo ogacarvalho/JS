@@ -34,22 +34,19 @@ Exemplo de uso: Quando 'x' botão for disparado queremos que 'x' ação seja fei
 // Login/index.js
 
 import React from 'react';
-import { useDispatch } from 'react-redux';                   <--- !
-
-import { Title } from './styled';
-import { Container } from '../../styles/Global';
+import { useDispatch } from 'react-redux'; // Disparador!
 
 export default function Login() {
-  const dispatch = useDispatch();                            <--- !
+  const dispatch = useDispatch();
 
   function handleClick(e) {
     e.preventDefault();
 
-    dispatch({                                               <--- !
+    dispatch({
       type: 'BOTAO_CLICADO',
     });
 
-        dispatch({                                           <--- !
+    dispatch({
       type: 'BOTAO_CLICADO_2',
     });
   }
@@ -63,13 +60,28 @@ Store/Index.js
 
 import { createStore } from 'redux';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'BOTAO_CLICADO':
-      return state;
+const initialState = {
+  botaoClicado: false,
+};
 
-    default:
+const reducer = (state = initialState, action) => {
+
+  switch (action.type) {
+
+    case 'BOTAO_CLICADO': {
+
+      const newState = { ...state };
+
+      newState.botaoClicado = !newState.botaoClicado;
+
+      return newState;
+
+    }
+
+
+    default: {
       return state;
+    }
   }
 };
 
@@ -79,19 +91,16 @@ export default store;
 
 
 
-Agora queremos saber se o nosso botão já foi clicado, para isso precisamos de um "parâmetro" uma "referência" ou seja: criaremos um estado inicial.
+Agora queremos capturar esse estado, para isso basta importar a função do redux chamada: useSelector((state) => state);
 
-const initialState = {
-  botaoClicado: false,
-}
+import { useSelector } from 'react-redux';
 
-const reducer = (state = initialState, action) => {...
+export default function Header() { ...
 
+  console.log(useSelector((state) => state));    -> Simples assim, estamos capturando o estado do objeto no header.
 
-
-
-
-
+  ...
+};
 
 
 
