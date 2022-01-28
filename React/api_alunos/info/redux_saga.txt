@@ -7,3 +7,6 @@ Para fazer o curso instalar a versão específica: npm i history@4.10.1
 Em seguida, carregue o recurso no App.js e o aplique na tag 'Router'
 
 !Os estados do redux [São acessíveis globalmente]
+
+
+
