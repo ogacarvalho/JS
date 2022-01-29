@@ -6,7 +6,7 @@ import { resolve } from 'path';                                               //
 
 dotenv.config();                                                              // Carrega o arquivo [.env]
 
-import './src/database';                                                      // Carrega a base de dados.
+import './src/database';                                                      // Carrega a base de dados [index.js].
 import express from 'express';                                                // Carrega o servidor [microframework]
 
 import homeRoutes from  './src/routes/homeRoutes';                            // Gerenciador de rotas da Home

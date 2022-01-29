@@ -7,23 +7,21 @@ Validando Password
 
 Em seguida, adicionaremos o hook, antes do return digite: this.addHook('beforeSave', f(dados do usuário));                    !Há métodos variados, como "antes de criar, antes de desconectar..."
 
-[3] No email, vamos configurar a mensagem de "unique".
-
 !O sequelize utiliza o Validator, portanto todos os seus métodos são válidos.
 !Salt é o tipo de "encriptação"
-!Use valores médios para o salt, quanto mais mais processamento de servidor.
+!Use valores médios para o salt, quanto mais, mais processamento de servidor.
 */
 
+import Sequelize, { Model } from 'sequelize';                                   // Carregando gerenciador do Banco de Dados e Recurso Model [Sequelize]
+import bcryptjs from 'bcryptjs';                                                // Carregando encriptador
 
-import Sequelize, { Model } from 'sequelize';
-import bcryptjs from 'bcryptjs';
+export default class User extends Model {                                       // Gerando Classe User com base Model [Sequelize]
+  static init(sequelize) {                                                      // Carrega parâmetro de conexão com o Sequelize.
+    super.init({                                                                // Classe base recebe objetos no primeiro parâmetro
 
-export default class User extends Model {
-  static init(sequelize) {
-    super.init({
       nome: {
         type: Sequelize.STRING,
-        defaultValue: '',                      // Se este campo não for enviado, vamos gerar um erro propositalmente.
+        defaultValue: '',
         validate: {
           len: {
             args: [3, 255],
@@ -58,18 +56,18 @@ export default class User extends Model {
         },
       },
     }, {
-      sequelize,
+      sequelize,                                                                          // Aciona conexão entre os elementos e o  sequelize[static init]
     });
 
-    this.addHook('beforeSave', async (user) => {                                                // Aqui testamos adicionando hook que será adicionado antes de salvar.
+    this.addHook('beforeSave', async (user) => {                                          // Aqui fazemos um hook no usuário antes de salvar.
       if (user.password) {
-        user.password_hash = await bcryptjs.hash(user.password, 8);                               // No segundo parâmetro, a função que irá substituir o password pelo hash.
+        user.password_hash = await bcryptjs.hash(user.password, 8);                       // Se o usuário tiver uma senha, será feito um salt no password.
       }
     });
-    return this;
+    return this;                                                                          // Retorna a instância.
   }
 
-  passwordIsValid(password) {
+  passwordIsValid(password) {                                                             // Método de validação de password, batendo senha digitada com salt.
     return bcryptjs.compare(password, this.password_hash);
   }
 }

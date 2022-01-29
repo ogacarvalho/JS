@@ -1,14 +1,14 @@
 
-import Sequelize, { Model } from 'sequelize';
-import appConfig from '../config/appConfig';
+import Sequelize, { Model } from 'sequelize';                                   // Carrega Gerenciador de Banco de Dados e Recurso Model [Sequelize]
+import appConfig from '../config/appConfig';                                    // Carrega arquivo de configurações que retorna URL.
 
-export default class Foto extends Model {
-  static init(sequelize) {
-    super.init({
+export default class Foto extends Model {                                       // Gera Classe Foto com classe Base Model
+  static init(sequelize) {                                                      // Carrega parâmetro de conexão com o Sequelize.
+    super.init({                                                                // Classe base recebe objetos no primeiro parâmetro
 
-      originalname: {
+      originalname: {                                                           // Objeto que cria formatação do nome original do arquivo.
         type: Sequelize.STRING,
-        defaultValue: '',                                                     // Se tiver valor padrão, da erro na validação.
+        defaultValue: '',
         validate: {
           notEmpty: {
             msg: 'Campo não pode ficar vázio.',
@@ -16,9 +16,9 @@ export default class Foto extends Model {
         },
       },
 
-      filename: {
+      filename: {                                                               // Objeto que cria formatação do novo nome do arquivo.
         type: Sequelize.STRING,
-        defaultValue: '',                                                     // Se tiver valor padrão, da erro na validação.
+        defaultValue: '',
         validate: {
           notEmpty: {
             msg: 'Campo não pode ficar vázio.',
@@ -26,7 +26,7 @@ export default class Foto extends Model {
         },
       },
 
-      url: {
+      url: {                                                                   // Objeto que faz a formatação final, adicionando link para acesso + novo nome na foto.
         type: Sequelize.VIRTUAL,
         get() {
           return `${appConfig.url}/images/${this.getDataValue('filename')}`;
@@ -34,13 +34,13 @@ export default class Foto extends Model {
       },
 
     }, {
-      sequelize,
-      tableName: 'fotos',
+      sequelize,                                                               // Aciona conexão entre os elementos e o  sequelize
+      tableName: 'fotos',                                                      // Cria um nome para a tabela [fotos]
     });
     return this;
   }
 
-  static associate(models) {                                                 // Essa Model pertence ao Model.aluno através da Foreign Key -> aluno_id
+  static associate(models) {                                                   // Essa Model pertence ao Model.aluno através da Foreign Key -> aluno_id
     this.belongsTo(models.Aluno, { foreignKey: 'aluno_id' });
   }
 }

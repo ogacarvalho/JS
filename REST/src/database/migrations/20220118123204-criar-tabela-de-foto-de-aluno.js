@@ -1,3 +1,5 @@
+// Essa migration possibilita a criação e anexação de registros de fotos no banco de dados.
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('fotos', {

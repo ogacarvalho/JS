@@ -1,3 +1,5 @@
+// Seed é uma espécie de "criador artifical" que possibilita encher a base de dados com dados artificiais.
+
 const bcryptjs = require('bcryptjs');
 
 module.exports = {

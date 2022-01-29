@@ -1,13 +1,13 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize';                                // Carrega o Gerenciador de BDD e o Recurso de Models [Sequelize]
 
-export default class Aluno extends Model {
-  static init(sequelize) {
-    super.init({
+export default class Aluno extends Model {                                   // Gera Classe Aluno com base no Model Sequelize
+  static init(sequelize) {                                                   // Aciona o Sequelize
+    super.init({                                                             // Classe Base [Model], recebe acionamento de objeto com o seguintes elementos:
 
-      nome: {
-        type: Sequelize.STRING,
-        defaultValue: '',                                                     // Se tiver valor padrão, da erro na validação.
-        validate: {
+      nome: {                                                                // Elemento nome:
+        type: Sequelize.STRING,                                              // Tipo de dados: String
+        defaultValue: '',                                                    // !Se tiver valor padrão, dará erro na validação.
+        validate: {                                                          // Validação básica + tipo de validação [len] + mensagem de erro.
           len: {
             args: [3, 255],
             msg: 'Nome precisa ter entre 3 e 255 caracteres',
@@ -28,7 +28,7 @@ export default class Aluno extends Model {
 
       email: {
         type: Sequelize.STRING,
-        defaultValue: '',                                                     // Se tiver valor padrão, da erro na validação.
+        defaultValue: '',
         unique: {
           msg: 'E-mail já existe',
         },
@@ -41,7 +41,7 @@ export default class Aluno extends Model {
 
       idade: {
         type: Sequelize.INTEGER,
-        defaultValue: '',                                                     // Se tiver valor padrão, da erro na validação.
+        defaultValue: '',
         validate: {
           isInt: {
             msg: 'Idade precisa ser um número inteiro.',
@@ -51,7 +51,7 @@ export default class Aluno extends Model {
 
       peso: {
         type: Sequelize.FLOAT,
-        defaultValue: '',                                                     // Se tiver valor padrão, da erro na validação.
+        defaultValue: '',
         validate: {
           isFloat: {
             msg: 'Peso precisa ser um número inteiro ou de ponto flutuante.',
@@ -61,7 +61,7 @@ export default class Aluno extends Model {
 
       altura: {
         type: Sequelize.FLOAT,
-        defaultValue: '',                                                     // Se tiver valor padrão, da erro na validação.
+        defaultValue: '',
         validate: {
           isFloat: {
             msg: 'Altura precisa ser um número inteiro ou de ponto flutuante.',
@@ -70,14 +70,12 @@ export default class Aluno extends Model {
       },
 
     }, {
-      sequelize,
+      sequelize,                                                                   // Conectando elementos ao sequelize. [Static init(sequelize)]
     });
-    return this;
+    return this;                                                                   // Retorna a instância.
   }
 
-  static associate(models) {                                          // Associando o aluno ao Models da foto.
-    this.hasMany(models.Foto, { foreignKey: 'aluno_id' });
+  static associate(models) {                                                       // Criando relação entre o Model Alunos e o modo Fotos via PrimaryKey
+    this.hasMany(models.Foto, { foreignKey: 'aluno_id' });                         // Se houver fotos registradas no PrimaryKey do aluno, então será disponibilizada.
   }
 }
-
-// Essa classe é tão estranha para nós quanto para o professor, relax.

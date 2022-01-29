@@ -1,3 +1,5 @@
+// Essa migration está responsável pela criação da tabela 'usuários'.
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('users', {

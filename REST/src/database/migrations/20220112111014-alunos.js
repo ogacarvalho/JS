@@ -1,4 +1,6 @@
-// Para crirar migrations: npx sequelize migration:create --name:alunos
+// Essa migration está responsável pela criação da table 'alunos' no banco de dados.
+
+// Para criar migrations: npx sequelize migration:create --name:alunos
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
