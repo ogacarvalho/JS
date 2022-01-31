@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { Title } from './styled';
 import { Container } from '../../styles/Global';
-import * as example from '../../store/modules/example/actions';
+import * as example from '../../store/modules/example/actions'; // Importamos as ações possíveis.
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export default function Login() {
   function handleClick(e) {
     e.preventDefault();
 
-    dispatch(example.clicaBotao());
+    dispatch(example.clicaBotaoRequest());
   }
 
   return (

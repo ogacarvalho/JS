@@ -72,13 +72,15 @@ function* sharing(){
 
 let result = sharing();
 
-for(let valor of result){
+for(let valor of result){ // No exemplo abaixo, mostramos o funcionamento do for of nesta situação.
     console.log(valor);
 }
 
-
-
-
-
-
-
+/* 
+For of: Ele está iterando em busca do value, enquanto ele existir.
+console.log(result.next().value); um
+console.log(result.next().value); dois
+console.log(result.next().value); três
+console.log(result.next().value); quatro
+console.log(result.next().value); cinco
+*/
