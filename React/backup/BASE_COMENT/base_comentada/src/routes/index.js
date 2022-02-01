@@ -1,12 +1,13 @@
-import React from 'react';
 
-import { Switch as Rotas } from 'react-router-dom';
+import React from 'react';                                    // Carrega a biblioteca
 
-import MyRoute from './MyRoute'; // Uma espécie de middleware que fará a checagem se o usuário está logado ou não.
-import Login from '../pages/Login';
-import Page404 from '../pages/Page404';
+import { Switch as Rotas } from 'react-router-dom';           // Carrega o Switch que aciona a rota toda vez que o URL bate. [Gerenciador de rotas]
 
-export default function Routes() {
+import MyRoute from './MyRoute';                              // Carrega o arquivo de rota privada. [Um arquivo que finge ser o <route> e intercepta a requisição]
+import Login from '../pages/Login';                           // Carrega paǵina de Login
+import Page404 from '../pages/Page404';                       // Carrega página 404
+
+export default function Routes() {                            // Componente Routes [Importado pelo App]
   return (
     <Rotas>
       <MyRoute exact path="/" component={Login} />
@@ -15,7 +16,8 @@ export default function Routes() {
   );
 }
 
-/* Este arquivo retorna a organização das rotas dos nossos componentes, no qual aquelas que precisam de Login serão enviadas utilizando o componente MyRoute que vai interceptar a requisição da rota específica "/" simulando ser o "<Route>" uma espécie de middleware que será acionado quando o usuário fizer a requisição para o caminho específico "/" e então o middleware fará a validação, se der tudo certo vai renderizar o component normalmente.
+/* O Componente de rotas é relativamente simples, conecta o endereço ao componente, no entanto neste caso temos um "Middleware" que está realizando a interceptação das rotas com intuíto de gerar uma checagem de login. [Detalhes no MyRoute]
 
+!Os endereços serão futuramente conectados ao axios que fará cada requisição se conectar a nossa api back-end.
 !Importante o gerenciador de rotas foi atualizado, e agora é significativamente diferente, requer uma revisão/curso atualizado.
 */
