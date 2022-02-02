@@ -1,8 +1,0 @@
-Styled Components
-Através do arquivo styled.js utilizando recursos do react será possível adicionar css ao componente específico.
-Além disso, também é possível estilizar componentes globais.
-
-!Instalar o Styled Components: npm i styled-components
-
-!Instalar extensão: ext install  vscode-styled-components
-

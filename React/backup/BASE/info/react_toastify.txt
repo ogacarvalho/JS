@@ -1,8 +1,0 @@
-Toda comunicação com o cliente será realizada via react toastify, não precisamos nos importar com o local.
-
-
-! Dentro da aplicação [app.js] carregaremos o nosso toastify
-! Em seguinda adicionar ele no jsx como um componente
-! + parâmetro de autoclose e import do css toastify no Global.js
-
-! Instalação: npm i react-toastify
