@@ -4,9 +4,9 @@ import { persistReducer } from 'redux-persist';
 export default (reducers) => {
   const persistedReducers = persistReducer(
     {
-      key: 'REACT_BASE',
+      key: 'CONSUMO-API',
       storage,
-      whitelist: ['example'],
+      whitelist: ['auth'], // Neste objeto, temos todos os módulos, porém apenas os na wl serão salvos no ls.
     },
     reducers,
   );
