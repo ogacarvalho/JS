@@ -3,14 +3,16 @@ import React, { useState } from 'react'; // useState é a criação de estados p
 import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
 import { useDispatch } from 'react-redux'; // O reducer vai pegar a action e o type.
+import { get } from 'lodash'; // Recurso de condicionais, [se x for falso, use y].
 
 import { Container } from '../../styles/Global';
 import { Form } from './styled';
 import * as actions from '../../store/modules/auth/actions';
-// import axios from '../../services/axios';
 
-export default function Login() {
+export default function Login(props) {
   const dispatch = useDispatch();
+
+  const prevPath = get(props, 'location.state.prevPath', '/'); // a constante [prevPath] representará se existir o caminho anterior, ou home.
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +33,7 @@ export default function Login() {
 
     if (formErrors) return;
 
-    dispatch(actions.loginRequest({ email, password })); // Se tudo correr bem, será disparado o tipo de ação com os dados e então capturada pelo reducer.
+    dispatch(actions.loginRequest({ email, password, prevPath })); // Se tudo correr bem, será disparado o tipo de ação com os dados e então capturada pela rota privada.
   }
 
   return (
