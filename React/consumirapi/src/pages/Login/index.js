@@ -2,17 +2,20 @@
 import React, { useState } from 'react'; // useState é a criação de estados para uso exclusivo do componente, redux é para uso da API.
 import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
-import { useDispatch } from 'react-redux'; // O reducer vai pegar a action e o type.
+import { useDispatch, useSelector } from 'react-redux'; // O reducer vai pegar a action e o type.
 import { get } from 'lodash'; // Recurso de condicionais, [se x for falso, use y].
 
 import { Container } from '../../styles/Global';
 import { Form } from './styled';
+import Loading from '../../components/Loading';
 import * as actions from '../../store/modules/auth/actions';
 
 export default function Login(props) {
   const dispatch = useDispatch();
 
   const prevPath = get(props, 'location.state.prevPath', '/'); // a constante [prevPath] representará se existir o caminho anterior, ou home.
+
+  const isLoading = useSelector((state) => state.auth.isLoading); // Estado global.
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,6 +41,7 @@ export default function Login(props) {
 
   return (
     <Container>
+      <Loading isLoading={isLoading} />
       <h1>Login</h1>
       <Form onSubmit={handleLogin}>
         <label htmlFor="email">
