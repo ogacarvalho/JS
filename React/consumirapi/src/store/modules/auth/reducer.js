@@ -1,4 +1,5 @@
 import * as types from '../types'; // Poderiamos simplesmente escrever o "value" da action no switch mas isso quebraria o estilo "modularizado" da arquitetura.
+import axios from '../../../services/axios';
 
 const initialState = {
   isLoggedIn: false, // Através da rota, saberemos se o usuário está ou não logado.
@@ -25,6 +26,7 @@ export default function (state = initialState, action) {
     }
 
     case types.LOGIN_FAILURE: {
+      delete axios.defaults.headers.Authorization; // Ao deslogar, o usuário deve perder o header com a "authorization", para garantir que o token fique invalido.
       const newState = { ...initialState };
       return newState;
     }
