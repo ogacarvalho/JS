@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { FaUserCircle, FaEdit } from 'react-icons/fa';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { isEmail, isInt, isFloat } from 'validator'; // Validador só valida Strings
 import { useDispatch } from 'react-redux';
 
+import { Link } from 'react-router-dom';
 import axios from '../../services/axios';
 import history from '../../services/history';
 import { Container } from '../../styles/Global';
-import { Form } from './styled';
+import { Form, ProfilePicture, Title } from './styled';
 
 import Loading from '../../components/Loading'; // Carregamos componente que gera efeito visual de "loading" de acordo com o param. recebido, no jsx.
 import * as actions from '../../store/modules/auth/actions';
-
+// "match" extraindo com destructuring o recurso que recebe os dados do usuário e coloca na url.
 export default function Aluno({ match }) {
   const dispatch = useDispatch();
-  const id = get(match, 'params.id', 0);
+  const id = get(match, 'params.id', ''); // Se existir ID nos parâmetros (ou seja, se houver "Match" envia os dados para a constante, se não envia '' [nada]).
   const [nome, setNome] = useState(''); // nome receberá os dados do input através do setNome que será acionado durante o evento de mudança.
   const [sobrenome, setSobrenome] = useState('');
   const [email, setEmail] = useState('');
   const [idade, setIdade] = useState('');
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
+  const [foto, setFoto] = useState('');
   const [isLoading, setIsLoading] = useState(false); // parâmetro de referência, sendo capturado pelo component [Loading] no jsx.
 
   // A única função deste useEffect será para preencher os dados do aluno, caso ele já exista.
@@ -31,7 +34,7 @@ export default function Aluno({ match }) {
     async function getData() {
       try {
         setIsLoading(true); // Setando isLoading.
-        const { data } = await axios.get(`/alunos/${id}`); // Muito melhor desta maneira [ ao invés ] de response e depois response.data
+        const { data } = await axios.get(`/alunos/${id}`); // Muito melhor desta maneira [ ao invés ] de response e depois response.data [Puxando dados do aluno no servidor]
 
         setNome(data.nome);
         setSobrenome(data.sobrenome);
@@ -39,6 +42,7 @@ export default function Aluno({ match }) {
         setIdade(data.idade);
         setPeso(data.peso);
         setAltura(data.altura);
+        setFoto(data.Fotos);
 
         return setIsLoading(false);
       } catch (err) {
@@ -135,7 +139,21 @@ export default function Aluno({ match }) {
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      <h1>{id ? 'Editar aluno' : 'Novo aluno'}</h1>
+      <Title>{id ? 'Editar aluno' : 'Novo aluno'}</Title>
+
+      {id && ( // Se existir um id de usuário, mandaremos a foto de perfil.
+        <ProfilePicture>
+          {foto ? (
+            /* <img src={foto} alt={nome} /> */ <FaUserCircle size={180} />
+          ) : (
+            <FaUserCircle size={180} />
+          )}
+          <Link to={`/fotos/${id}`}>
+            <FaEdit size={24} />
+          </Link>
+        </ProfilePicture>
+      )}
+
       <Form onSubmit={handleSubmit}>
         <input
           type="text"
