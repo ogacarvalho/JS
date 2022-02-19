@@ -1,20 +1,22 @@
-import { persistStore } from 'redux-persist'; // carrega o persistor [que salvará o estado do reducer desejado no navegador do usuário]
-import { createStore, applyMiddleware } from 'redux'; // carrega á arvore de estados e o aplicador de middlewares que será usado com o sagas.
-import createSagaMiddleware from 'redux-saga'; // carrega o sagas.
+//                                                                    Carregando:
+import { persistStore } from 'redux-persist';                         // Persistor salva o estado do reducer no navegador do usuário
+import { createStore, applyMiddleware } from 'redux';                 // Arvore de estados e Aplicador de Middlewares [Usado com o saga]
+import createSagaMiddleware from 'redux-saga';                        // Saga componente [Middleware(intermediário)] acionado via "request" que valida as requisições
 
-import persistedReducers from './modules/reduxPersist'; // acionando arquivo de configuração do persitor que pode conter ou receber reducers do rootReducer.
+//                                                                    Acionando:
+import persistedReducers from './modules/reduxPersist';               // Arquivo de configuração do persitor que pode conter ou receber reducers do rootReducer
+import rootSaga from './modules/rootSaga';                            // Responsável por agrupar e representar os [Sagas]
+import rootReducer from './modules/rootReducer';                      // Responsável por agrupar e representar os [Reducers]
 
-import rootSaga from './modules/rootSaga'; // carrega agrupador de intermediadores [sagas].
-import rootReducer from './modules/rootReducer'; // carrega agrupador de reducers.
 
-const sagaMiddleware = createSagaMiddleware(); // aciona método que conecta á arvore de estados com os middlewares [sagas].
+const sagaMiddleware = createSagaMiddleware();                        // Executando a ferramenta: [SagaMiddleware]
+sagaMiddleware.run(rootSaga);                                         // Conectando a ferramenta com o arquivo raíz [sagas].
 
-// Criação da árvore de estados: árvore receberá apenas estados salvos dos reducers com persistor e aplicará o conector de sagas [middlewares de validação]
-const store = createStore(
-  persistedReducers(rootReducer),
-  applyMiddleware(sagaMiddleware),
-);
-sagaMiddleware.run(rootSaga); // conecta o Saga com os middlewares existentes.
 
-export const persistor = persistStore(store); // persistor armazena estado atual da árvore de estados. [pode ser importado].
-export default store; // export padrão: árvore de estados, que carrega os middlewares e os reducers salvos.
+// Árvore de Estados, fará a conexão entre o persistor e o arquivos raíz [reducer] e depois entre o aplicador de middlewares e o arquivo raíz [sagas].
+const store = createStore( persistedReducers(rootReducer), applyMiddleware(sagaMiddleware) );
+
+export const persistor = persistStore(store);                         // Arquivo de exportação [persistor] que armazena estado atual da árvore de estados.
+export default store;                                                 // Árvore de estados: [Export Padrão]
+
+// Este é o arquivo padrão representante dos estados dos componentes da aplicação, divididos entre estados salvos [persisted] e estados livres para acesso [store].

@@ -1,32 +1,33 @@
-import * as types from '../types'; // Poderiamos simplesmente escrever o "value" da action no switch mas isso quebraria o estilo "modularizado" da arquitetura.
-import axios from '../../../services/axios';
+import * as types from '../types';                                  // Carregando arquivo de Types
+import axios from '../../../services/axios';                        // Carrega o URLBASE[IP]
 
-const initialState = {
-  isLoggedIn: false, // Através da rota, saberemos se o usuário está ou não logado.
-  token: false,
-  user: {},
-  isLoading: false, // Verifica se a requisição ainda está em andamento, se sim:... loading.
+const initialState = {                                              // Estado: Módulo de Autorização [auth]
+  isLoggedIn: false,                                                // Usuário logado: False por padrão.
+  token: false,                                                     // Usuário possui token de autorização: Falso por padrão.
+  user: {},                                                         // Usuário: ?
+  isLoading: false,                                                 // Toda requisição mudará essa flag e automaticamente irá carregar o componente de login.
 };
 
-export default function (state = initialState, action) {
+export default function (state = initialState, action) {            // Função responsável por escutar requisições e definir novos estados.
+
   switch (action.type) {
-    case types.LOGIN_REQUEST: {
-      const newState = { ...state };
-      newState.isLoading = true;
-      return newState; // Sempre temos que retornar um novo estado, mesmo que seja o mesmo.
+    case types.LOGIN_REQUEST: {                                     // "Requisição de login"
+      const newState = { ...state };                                // Sempre temos que retornar um novo estado, mesmo que seja o mesmo.
+      newState.isLoading = true;                                    // Porém, aciona o componente de loading enquanto aguardamos um retorno.
+      return newState;                                              // Atualiza o estado.
     }
 
-    case types.LOGIN_SUCCESS: {
-      const newState = { ...state };
-      newState.isLoggedIn = true;
-      newState.token = action.payload.token;
-      newState.user = { ...action.payload.user };
-      newState.isLoading = false;
-      return newState;
+    case types.LOGIN_SUCCESS: {                                     // "Login bem-sucedido!"
+      const newState = { ...state };                                // Prepara o novo estado.
+      newState.isLoggedIn = true;                                   // Usuário: logado.
+      newState.token = action.payload.token;                        // Armazenando token.
+      newState.user = { ...action.payload.user };                   // User: [recebe dados do usuário] provenientes do payload enviado durante o disparo da action.
+      newState.isLoading = false;                                   // Finaliza Loading.
+      return newState;                                              // Atualiza o estado.
     }
 
     case types.LOGIN_FAILURE: {
-      delete axios.defaults.headers.Authorization; // Ao deslogar, o usuário deve perder o header com a "authorization", para garantir que o token fique invalido.
+      delete axios.defaults.headers.Authorization;
       const newState = { ...initialState };
       return newState;
     }

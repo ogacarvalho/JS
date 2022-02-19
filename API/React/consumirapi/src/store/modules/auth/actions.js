@@ -1,3 +1,5 @@
+// ["actions" do módulo "auth"] portanto ao serem disparadas, executarão o type relativo a ação e poderão carregar um payload se necessário.
+
 import * as types from '../types';
 
 export function loginRequest(payload) {
