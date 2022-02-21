@@ -1,9 +1,11 @@
-import React from 'react';
+//                                                                                       Carregando:
+import React from 'react';                                                               // Biblioteca
 
-import { Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';                                               // Método que combina a requisição com a rota correta.
 
-import MyRoute from './MyRoute';
+import MyRoute from './MyRoute';                                                         // Middleware (rota privada) de validação.
 
+//           Componentes (Páginas)
 import Login from '../pages/Login';
 import Aluno from '../pages/Aluno';
 import Alunos from '../pages/Alunos';
@@ -24,3 +26,5 @@ export default function Routes() {
     </Switch>
   );
 }
+
+// O Switch vai ouvir as requisições e direcionar para o caminho correto, então o middleware entrará em ação e validará a rota, depois o componente será carregado.

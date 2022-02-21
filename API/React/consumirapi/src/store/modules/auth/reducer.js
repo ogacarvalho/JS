@@ -26,24 +26,24 @@ export default function (state = initialState, action) {            // Função 
       return newState;                                              // Atualiza o estado.
     }
 
-    case types.LOGIN_FAILURE: {
-      delete axios.defaults.headers.Authorization;
-      const newState = { ...initialState };
-      return newState;
+    case types.LOGIN_FAILURE: {                                     // "Erro ao efetuar login..."
+      delete axios.defaults.headers.Authorization;                  // Remoção do token de autorização do cabeçalho.
+      const newState = { ...initialState };                         // Prepara o novo estado.
+      return newState;                                              // Atualiza o estado.
     }
 
-    case types.REGISTER_REQUEST: {
-      const newState = { ...state };
-      newState.isLoading = true;
-      return newState;
+    case types.REGISTER_REQUEST: {                                  // Solitação de registro de usuário.
+      const newState = { ...state };                                // Prepara o novo estado.
+      newState.isLoading = true;                                    // Inicia "loading".
+      return newState;                                              // Atualiza o estado.
     }
 
-    case types.REGISTER_UPDATED_SUCCESS: {
-      const newState = { ...state };
-      newState.user.nome = action.payload.nome;
-      newState.user.email = action.payload.email;
-      newState.isLoading = false;
-      return newState;
+    case types.REGISTER_UPDATED_SUCCESS: {                          // Registro efetuado com sucesso.
+      const newState = { ...state };                                // Prepara o estado.
+      newState.user.nome = action.payload.nome;                     // Adiciona o nome do usuário.
+      newState.user.email = action.payload.email;                   // Adiciona o email do usuário.
+      newState.isLoading = false;                                   // Finaliza "Loading".
+      return newState;                                              // Atualiza o estado.
     }
 
     case types.REGISTER_CREATED_SUCCESS: {
