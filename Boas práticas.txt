@@ -186,9 +186,8 @@ Lista das principais ferramentas usadas até então, e uma breve descrição.
 
 
 
-
-
-
+Importante:
+Toda vez que for desenvolver uma aplicação ou código, procure projetar as etapas do processo antes de iniciar, são 30 minutos que tornaram o desenvolvimento do processo muito mais eficiênte e claro, levando ai as vezes metade do tempo para ser feito.
 
 
 
