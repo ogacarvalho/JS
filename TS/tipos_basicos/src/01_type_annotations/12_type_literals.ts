@@ -21,7 +21,7 @@ function escolhaCor(cor: 'Azul'|'Branco'|'Amarelo'):string {
   return cor;
 };
 
-escolhaCor('Branco');
+console.log(escolhaCor('Branco'));
 
 // Module-mode [Ao adicionar "export" o Typescript considera que este arquivo é um modulo e o remove do escopo-global].
 export default 0;
