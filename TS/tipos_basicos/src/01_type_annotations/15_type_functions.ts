@@ -19,6 +19,6 @@ export default function mapeando(array: string[], callbackfn: callback): string[
 
 }
 
-const abc = ['a', 'b', 'c'];
+const abc = ['a', 'b', 'c', 'd'];
 
 console.log(mapeando(abc, item => item.toLocaleUpperCase()));
