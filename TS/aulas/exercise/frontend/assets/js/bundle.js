@@ -28,7 +28,7 @@ const modulo_1 = __importDefault(__webpack_require__(/*! ./modulo */ "./src/webp
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = () => {
-    console.log('Sou um módulo');
+    console.log('Sou um módulo!!!!');
 };
 
 
