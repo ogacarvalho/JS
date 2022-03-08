@@ -1,0 +1,11 @@
+Arquivo Híbrido: Frontend - Backend
+ Isso significa que o código escrito aqui, poderá ser direcionado tanto para o backend quanto para o frontend.
+
+→ Compilar código typescript para o backend:   npm run backend;
+→ Arquivo de entrada: src
+
+→ Compilar código typescript para o frontend:  npm run frontend;
+→ Arquivo de entrada: index.ts
+
+
+Em um arquivo typescript híbrido teremos o back e o front end na mesma pasta, porém devemos lembrar que o TypeScript deve ser sempre compilado para JavaScript, essa compilação pode ser feita diretamente pelo TypeScript para o back-end que lerá JS atual, enquanto para o front-end devemos usar o Webpack que precisa tornar o código mínificado e retro-compatível, para que ele funcione em diversos outros tipos de navegadores. Por essa razão usamos, webpack para transpilar o código TS em JS de Front end e Typescript comum para compilar para JS de back-end [padrão];
