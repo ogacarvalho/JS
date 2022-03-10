@@ -62,7 +62,7 @@ function checkEmail(input) {
         showErrorMessages(input, 'Email inválido.');
 }
 ;
-// Compara os dois inputs, se forem diferentes adiciona mensagem de erro.
+// Compara os dois inputs, se forem diferentes adiciona a mensagem de erro.
 function checkEqualPasswords(password, password2) {
     if (password.value !== password2.value)
         showErrorMessages(password2, 'As senhas não correspodem.');

@@ -51,7 +51,7 @@ function checkEmail(input: HTMLInputElement):void {
     if(!isEmail(input.value)) showErrorMessages(input, 'Email inválido.')
 };
 
-// Compara os dois inputs, se forem diferentes adiciona mensagem de erro.
+// Compara os dois inputs, se forem diferentes adiciona a mensagem de erro.
 function checkEqualPasswords(password: HTMLInputElement, password2: HTMLInputElement):void {
     if(password.value !== password2.value) showErrorMessages(password2, 'As senhas não correspodem.');
 }
