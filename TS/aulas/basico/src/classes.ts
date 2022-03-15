@@ -35,3 +35,4 @@ const enterprise = new Empresa('Enterprise LTDA', '31739873987');
 const colaborador_1 = new Colaborador('Gabriel', 'Carvalho');
 
 enterprise.addColaborador(colaborador_1);
+enterprise.showColaboradores();
