@@ -191,8 +191,11 @@ Importante:
 Toda vez que for desenvolver uma aplicação ou código, procure projetar as etapas do processo antes de iniciar, são 30 minutos que tornaram o desenvolvimento do processo muito mais eficiênte e claro, levando ai as vezes metade do tempo para ser feito.
 
 
+TypeScript
 
-
+• Public    → atributo acessível de qualquer ponto.
+• Protected → atributo acessível até as classes filhas.
+• Private   → atributo acessível somente dentro da própria classe.
 
 
 
