@@ -2,20 +2,20 @@
 // Agregação:
 // → Trata-se de uma relação mais forte que a associação, onde a usabilidade fica comprometida quando um item não agrega ao outro.
 
-class Carrinho {
-    private readonly produtos: Produto[] = [];
+class Carrinho {                                                                                // Classe: recebe dois métodos
+    private readonly produtos: Produto[] = [];                                                  // Atributo privado de leitura: Array vazio do tipo Produtos.
 
-    inserirProdutos(...produtos: Produto[]):void {
-        for (const produto of produtos){
+    inserirProdutos(...produtos: Produto[]):void {                                              // Método: recebe argumento(array de um ou mais produtos).
+        for (const produto of produtos){                                                        // Cada elemento do array será adicionado ao atributo via push e for of.
             this.produtos.push(produto);
         }
     }
 
-    quantidadeProdutos():number {
+    quantidadeProdutos():number {                                                               // Método: retorna a quantidade de elementos dentro do atributo (produtos).
         return this.produtos.length;
     }
 
-    total():number {
+    total():number {                                                                            // Método: faz a soma dos valores internos do array via reduce();
         return this.produtos.reduce((soma, produto) => soma + produto.preco, 0);
     }
 }
