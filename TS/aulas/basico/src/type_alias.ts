@@ -8,12 +8,14 @@ type Tipo_01 = {
 
 type Tipo_02 = {
     atributo_02: string;
+    atributo_03?: string;
     metodo(): string;
 }
 
+type Tipos = Tipo_01 & Tipo_02;
 
-class Classe implements Tipo_01, Tipo_02 {
-    constructor(public atributo_01: string, public atributo_02: string) {};
+class Classe implements Tipos {
+    constructor(public atributo_01: string, public atributo_02: string, public atributo_03?: string) {};
     metodo(): string {
         return this.atributo_01 + ' ' + this.atributo_02;
     }
