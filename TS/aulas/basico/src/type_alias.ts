@@ -1,6 +1,6 @@
 
 // Tipos, uma classe abstrata muito mais simples!
-// → É uma maneira de dizer quais atributos e métodos a classe deve conter.
+// → É uma maneira de dizer quais propriedades e métodos a classe deve conter.
 
 type Tipo_01 = {
     atributo_01: string;
