@@ -1,6 +1,6 @@
 
 // Encadeamento Opcional
-// É o uso do operador ? durante um encadeamento, tornando "opcional".
+// É o uso do operador ? durante um encadeamento, tornando "opcional"...
 
 // Coalescência Nula
 // É uma checagem tipo "short circuit", porém para valores nulos ou undefined.
