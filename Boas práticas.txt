@@ -141,6 +141,7 @@ Manipulando o package.json:
 9.  Listar os pacotes instalados                    npm ls
 10. Listar apenas os pacotes que você instalou:     npm ls --depth=0
 11. Pacotes Desatualizados:                         npm outdated
+12. Atualizar todos os pacotes:                     npx npm-check -u                !Atenção
 
 
 Navegando entre Pastas
