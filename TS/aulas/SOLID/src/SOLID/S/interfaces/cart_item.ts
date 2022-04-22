@@ -1,0 +1,1 @@
+export interface cart_item { name: string; price: number };     
