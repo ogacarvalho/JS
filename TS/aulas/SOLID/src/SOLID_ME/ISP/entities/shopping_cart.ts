@@ -1,7 +1,6 @@
-// Single Responsability: Classes com apenas uma responsabilidade.
-// Uma classe geralmente é coesa, quando seus métodos usam seus atributos (propriedades).
+// OCP: As classes [entidades] devem estar abertas para extensão, mas fechadas para modificação.
 
-import { cart_item } from "../interfaces/cart_item";
+import { cart_item } from "./interfaces/cart_item";
                                                                                                         
 export class ShoppingCart {                
     private readonly _items: cart_item[] = [];                                                         
@@ -10,7 +9,7 @@ export class ShoppingCart {
 
     remove_item(index: number): void { this._items.splice(index, 1) };
 
-    total(): number { return +this._items.reduce((total, current) => total + current['price'], 0).toFixed(2) };
+    total(discount: number = 1): number { return +this._items.reduce((total, current) => total + current['price'] * discount, 0).toFixed(2) };
 
     is_empty(): boolean { return this._items.length === 0 };
 

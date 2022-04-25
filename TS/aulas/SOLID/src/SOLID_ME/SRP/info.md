@@ -1,3 +1,4 @@
+
 Princípio Single Responsability:
     Este princípio é baseado na individualização das classes separando-as em pastas definidas a partir da atribuição que cada classe recebe.
     De modo simples, cada classe deve estar coesa em sua função, as classes de mensagens responsáveis por mensagens as classes de produto responsáveis por produto, inicialmente pode aparentar ser confuso para códigos pequenos, mas é altamente escalável, tornando seu código completamente manuseável.
