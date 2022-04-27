@@ -1,0 +1,6 @@
+Dependências                                                                  !TypeScript exige o uso de lib externa [@types]
+→ JEST:              npm i jest ts-jest @types/jest -D          Config:       [JS] → npx jest --init || [TS] → npx ts-jest config:init
+
+
+Comandos JEST:
+→ npx jest           [Procura por todos os testes (index.spec.ts ou index.test.ts) disponíveis e executa.]
