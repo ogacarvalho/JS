@@ -25,7 +25,7 @@ export class ShoppingCart implements ShoppingCartProtocol {
       .toFixed(2);
   }
 
-  totalWithDicount(): number {
+  totalWithDicount(): number {                                // Dispara método da classe enviada nos argumentos, enviando o total da instância nos parâmetros.
     return this.discount.calculate(this.total());
   }
 
