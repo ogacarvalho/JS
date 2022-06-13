@@ -5,17 +5,17 @@
 // → As instâncias das sub-classes bem com das heranças possuem acesso à todos os métodos publicos, originários.
 
 export class ClasseMae {
-    constructor( public a: string, public b: string ){};
+    constructor( public a: string, public b: string, protected c: string, private d: string ){};
 
-    getAB():void {
-        console.log(`${this.a}+${this.b}`);
+    getABCD():string {
+        return `${this.a}+${this.b}+${this.c}+${this.d}`;
     }
 };
 
 export class SubClasse extends ClasseMae {
-    constructor( a:string, b:string, public c: string ) { super(a,b) };
+    constructor( a:string, b:string, c:string, d:string, public e: string ) { super(a,b, c, d) };
 
-    getABC():void {
-        return super.getAB();
+    getABCDE():string {
+        return super.getABCD()+`+${this.e}`;
     }
 };
