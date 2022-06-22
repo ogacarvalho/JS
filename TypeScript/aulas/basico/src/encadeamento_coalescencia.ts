@@ -9,13 +9,14 @@
 type Documento = {
     titulo: string;
     texto: string;
-    data?: Date;
+    autor?: string;
 };
 
 const documento: Documento = {
     titulo: 'The Titulo',
     texto: 'Era uma vez',
+    //autor: 'Gabriel Felipe'
 };
 
 // Encadeamento Opcional ↓ Coalescência    ↓
-console.log(documento.data?.toDateString() ?? 'Ixi, não existe');
+console.log(documento.autor?.toUpperCase() ?? 'Ixi, não existe');
