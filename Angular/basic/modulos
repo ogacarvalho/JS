@@ -1,0 +1,7 @@
+
+
+
+Módulo
+→ Main: Código principal é o primeiro a ser executado, responsável por inicializar o módulo raíz [App.module].
+→ App.module: Responsável por agregar e integrar os demais componentes.
+→ App.component: É o código que representa e executa o componente como um todo, [seletor, html, css e ts].

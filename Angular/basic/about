@@ -1,0 +1,26 @@
+O Angular é um framework JS que atualiza o DOM ao-vivo. [At runtime].
+
+Módulo
+→ Main: Código principal é o primeiro a ser executado, responsável por inicializar o módulo raíz [App.module].
+→ App.module: Responsável por agregar e integrar os demais componentes.
+→ App.component: É o código que representa e executa o componente como um todo, [seletor, html, css e ts].
+
+
+Componentes
+→ AppComponent é o "core" do angular, é o grande benefício deste framework pois possibilita a criação de um site complexo por partes.
+→ O Componente App é o componente raíz, e todos os demais serão "aninhados" nele, de maneira completamente "separável".
+
+Criando um Componente Manualmente:
+→ Dentro da pasta App, crie uma nova pasta com o nome do seu componente.
+→ Cria o arquivo: A.component.ts [Este arquivo deverá conter a classe (exportável) que representa o componente e o @Component que irá configura-lo para o Angular];
+→ O Decorator @Component deverá conter o seletor e o arquivo html [templateUrl: './A.component.html',]
+→ Com a base do componente criado, poderá então registra-lo no módulo raíz [app.module] através da importação e adição do mesmo em Declarations.
+
+Criando um Componente Automaticamente (CLI):
+→ No terminal: ng generate component nome-do-componente || ng g c nome-do-component
+
+
+String Interpolation
+→ É o uso de {{ expressões em TS }} no HTML do componente.
+→ O único requisito é que o retorno seja sempre "string" ou "number" que seja fácilmente parseavel.
+→ A limitação é que não pode ter múltiplas linhas. 
