@@ -3,9 +3,9 @@
 // Aonde cada componente será representado por um seletor, geralmente no "xxx.component.ts";
 
 import { NgModule } from '@angular/core';                           //Importação dos módulos [são features que serão carregadas/utilizadas junto dos componentes].
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';                       // Required for Two-Way-Binding
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';                  // Substitui o HttpModule
+import { HttpClientModule } from '@angular/common/http';            // Substitui o HttpModule
 
 import { AppComponent } from './app.component';                     //Importação do componente
 import { ServerComponent } from './server/server.component';
@@ -21,7 +21,7 @@ import { ServersComponent } from './servers/servers.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule,                                                    // Its a "package of resources"
     HttpClientModule,
   ],
   providers: [],

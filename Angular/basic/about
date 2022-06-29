@@ -20,7 +20,19 @@ Criando um Componente Automaticamente (CLI):
 → No terminal: ng generate component nome-do-componente || ng g c nome-do-component
 
 
-String Interpolation
-→ É o uso de {{ expressões em TS }} no HTML do componente.
-→ O único requisito é que o retorno seja sempre "string" ou "number" que seja fácilmente parseavel.
-→ A limitação é que não pode ter múltiplas linhas. 
+Data Binding [Comunicação/Vinculo de dados]
+
+→ String Interpolation: <p>{{ propriedadeTS }}</p>
+    Usado quando queremos apenas mostrar um dado no HTML.
+
+→ Property Binding: <p [propriedadeHTML]="propriedadeTS">...</p>
+    Usado quando queremos atribuir um valor como "true" ou "false" de uma propridade TS à uma propriedade HTML.
+
+→ Event Binding: <button (evento)="metodo($event)">
+    Usado quando queremos acionar um método em um determinado evento.
+    [$event] é o objeto que carrega os dados do evento.
+
+→ Two-Way-Binding: <input [(ngModel)]="propriedadeTS">
+    Atualiza tanto a propriedade quanto o elemento automaticamente com o valor digitado durante o evento de input.
+
+    
