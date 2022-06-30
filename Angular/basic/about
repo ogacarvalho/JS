@@ -35,4 +35,21 @@ Data Binding [Comunicação/Vinculo de dados]
 → Two-Way-Binding: <input [(ngModel)]="propriedadeTS">
     Atualiza tanto a propriedade quanto o elemento automaticamente com o valor digitado durante o evento de input.
 
-    
+
+
+Diretivas Básicas [Instruções enviadas diretamente no DOM]
+ Geralmente são aplicadas como atributos nos elementos HTML.
+
+→ *ngIf: <seletor *ngIf="propriedade_booleana ou método com qualquer condição que retorne T/F">...</seletor>
+    O seletor será mostrado caso a propriedade/método retorne T/F.
+    !O asterísco caracteriza que uma *Diretiva Estrutural*
+
+→ ngStyle [Dinâmico]: <seletor [ngStyle]="{propriedade-css: método()}">...</seletor>
+    Atribui um determinado estilo de modo dinâmico.
+    !O []={} caracteriza o *Property Binding*
+
+→ ngClass [Dinâmico]: <seletor [ngClass]="{class-css: método()/condição_inline}">...</seletor>
+    Atribui ou não uma classe CSS caso o método/propriedade retorne T/F.
+
+→ *ngFor: <seletor *ngFor="let elemento of elementos; let i = indexS">...</seletor>
+    Cria uma lista de seletores para cada elemento de um array.
