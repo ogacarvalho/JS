@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../recipe.model';
+import { Recipe } from '../../shared/recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -7,13 +7,14 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  public recipes: Recipe[] = [new Recipe('Chocolate', 'Made with Cocoa', 'https://commons.wikimedia.org/wiki/File:Sugar-free_Homemade_Chocolate.jpg'),];
+  public recipes: Recipe[] = [chocolate, white_chocolate ];
 
-  constructor(recipes: Recipe) { 
-    this.recipes.push(recipes)
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
 }
+
+const chocolate = new Recipe('Chocolate', 'Made with Cocoa', 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Sugar-free_Homemade_Chocolate.jpg')
+const white_chocolate = new Recipe('White Chocolate', 'Made with Cocoa', 'https://upload.wikimedia.org/wikipedia/commons/4/47/Chopped_white_chocolate_chunks.jpg')
