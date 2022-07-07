@@ -8,7 +8,7 @@ import { Element } from '../interfaces/interfaces';
 })
 
 export class ServerElementComponent implements OnInit {
-  @Input('server-property-element') public element: Element;
+  @Input('server-property-element') public element: Element; // A propriedade recebe os dados {objeto<Element>} escutados pelo App e os usa em seu HTML.
 
   constructor() { }
 

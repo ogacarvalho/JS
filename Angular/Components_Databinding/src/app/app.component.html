@@ -1,8 +1,10 @@
 <div class="container">
-  <app-cockpit></app-cockpit>
+  <!-- Nosso componente está ouvindo o evento que acabamos de criar, e ao emitir irá enviar os dados para um método próprio. -->
+  <app-cockpit (servidor-criado)="onServerAdded($event)" (blueprint-criado)="onBlueprintAdded($event)"></app-cockpit>
   <hr>
   <div class="row">
     <div class="col-xs-12">
+      <!-- O seletor (server-element) mostrará cada servidor enviado por ele, via for of. -->
       <app-server-element *ngFor="let serverElement of serverElements" [server-property-element]="serverElement"></app-server-element>
     </div>
   </div>
