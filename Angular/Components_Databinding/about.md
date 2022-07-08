@@ -18,3 +18,34 @@ Component Communication
     componente_X {
         <componente_do_evento (evento)="metodo_do_componente_x($event)"> </componente_do_evento>
     }
+
+
+
+Local References - É um recurso que captura os dados de um elemento HTML através de uma hashtag.
+→ Estes dados poderão então ser utilizados dentro do HTML por exemplo, passando como argumento para um método.
+    {
+    <input #dados_do_input>
+    <button (click)="metodo(dados_do_input)">Adicionar<button>
+    }
+
+
+View Child - Uma outra maneira de capturar dados de uma referência local, passando para uma propriedade.
+{   
+    <input #input_server_content>
+    @ViewChild('input_server_content', {static: true}) input_server_content: ElementRef;
+    Pegando os dados: this.input_server_content.nativeElement.value
+}
+
+
+Projetando conteúdo externo dentro de um componente com <ng-content></ng-content>
+    [Componente-Externo][App]
+        <componente-interno>
+        <elemento-do-componente-interno></elemento-do-componente-interno> ← Em tese este elemento deveria estar dentro, mas está fora.
+        </componente-interno>
+
+    [Componente-Interno]
+        <div>
+        <ng-content></ng-content> ← Isto é um "Hook" um anzol, que captura o conteúdo externo do componente interno.
+        </div>
+
+

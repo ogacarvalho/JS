@@ -1,12 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">{{ element.name }}</div>
     <div class="panel-body">
-      <p>
-        <!-- Se o element.type for "server" então o seu conteúdo será mostrado em vermelho. -->
-        <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
-        <!-- Se o element.type for do tipo "blueprint" então seu conteúdo será mostrado em azul. -->
-        <em *ngIf="element.type === 'blueprint'" style="color: blue">{{ element.content }}</em>
-        <!-- Este conteúdo só será mostrado, se o "if" da propriedade for satisfeita. -->
-      </p>
+      <ng-content></ng-content>
     </div>
   </div>

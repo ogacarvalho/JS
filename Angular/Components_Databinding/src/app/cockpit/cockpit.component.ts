@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Element } from '../interfaces/interfaces';
 
 @Component({
@@ -9,27 +9,26 @@ import { Element } from '../interfaces/interfaces';
 export class CockpitComponent implements OnInit {
   @Output('servidor-criado') serverCreated = new EventEmitter<Element>();         // A propriedade virou o trigger de um evento. @Output() permite que ela seja ouvida.
   @Output('blueprint-criado') blueprintCreated = new EventEmitter<Element>();      // A propriedade virou o trigger de um evento. @Output() permite que ela seja ouvida.
-  public newServerName: string;
-  public newServerContent: string;
+  @ViewChild('input_server_content', {static: true}) input_server_content: ElementRef; 
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onAddServer() {                                                // Quando o método for acionado o evento ocorrerá emitindo, os dados desejados.
+  onAddServer(input_server_name: HTMLInputElement, input_server_content: HTMLInputElement) {                                                // Quando o método for acionado o evento ocorrerá emitindo, os dados desejados.
     this.serverCreated.emit({
       type: 'server', 
-      name: this.newServerName, 
-      content: this.newServerContent 
+      name: input_server_name.value, 
+      content: this.input_server_content.nativeElement.value, // Maneira diferente de passar dados.
     });
   }
 
-  onAddBlueprint() {                                            // Quando o método for acionado o evento ocorrerá emitindo, os dados desejados.
+  onAddBlueprint(input_server_name: HTMLInputElement, input_server_content: HTMLInputElement) {                                            // Quando o método for acionado o evento ocorrerá emitindo, os dados desejados.
     this.blueprintCreated.emit({
       type: 'blueprint', 
-      name: this.newServerContent, 
-      content: this.newServerContent 
+      name: input_server_name.value, 
+      content: input_server_content.value, 
     });
   }
 
