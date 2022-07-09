@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Element } from '../interfaces/interfaces';
 
 @Component({
@@ -7,12 +7,19 @@ import { Element } from '../interfaces/interfaces';
   styleUrls: ['./server-element.component.css']
 })
 
-export class ServerElementComponent implements OnInit {
+export class ServerElementComponent implements OnInit, OnChanges {
   @Input('server-property-element') public element: Element; // A propriedade recebe os dados {objeto<Element>} escutados pelo App e os usa em seu HTML.
 
-  constructor() { }
+  constructor(){ 
+    console.log('Constructor called.')
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes, 'Changes called');
+  }
 
   ngOnInit(): void {
+    console.log('ngOnInit called')
   }
 
 }

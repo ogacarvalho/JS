@@ -49,3 +49,5 @@ Projetando conteúdo externo dentro de um componente com <ng-content></ng-conten
         </div>
 
 
+LifeCycle Hooks [ngOnInit]
+    → São métodos que são executados em determinadas fases da vida de um componente.
