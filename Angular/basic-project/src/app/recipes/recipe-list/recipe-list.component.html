@@ -6,22 +6,9 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <a 
-        href="#" 
-        class="list-group-item clearfix" 
-        *ngFor="let recipe of recipes">
-            <div class="pull-left">
-                <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-                <p class="list-group-item-text">{{recipe.description}}</p>
-            </div>
-            <span class="pull-right">
-                <img [src]="recipe.imagePath"
-                alt="{{recipe.name}}" 
-                class="img-responsive" 
-                style="max-height: 50px;">
-            </span>
-        </a>
-        <app-recipe-item></app-recipe-item>
+        <!-- o @Input permite que o componente pai envie dados á uma propriedade específica [recipe]. -->
+        <app-recipe-item *ngFor="let recipe of recipes" [recipe_item]="recipe" (recipe_selected)="onRecipeSelected(recipe)"></app-recipe-item>
+        <!-- O app-recipe-item está sendo iterado com cada elemento e cada elemento esta enviando seus dados ao [recipe]. -->
     </div>
 </div>
 

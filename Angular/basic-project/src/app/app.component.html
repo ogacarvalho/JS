@@ -1,9 +1,11 @@
-<app-header></app-header>
+<!-- Ao clicar emitimos uma string via evento que criamos (featureSelected), este evento é capturado no parent component. -->
+<app-header (featureSelected)="onNavigate($event)"></app-header>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <app-recipes></app-recipes>
-            <shopping-list></shopping-list>
+            <!-- O evento é armazenado na string "loadedFeature" que servirá de condicional para mostrar qual componente aparecer. -->
+            <app-recipes *ngIf="loadedFeature === 'recipe'"></app-recipes>
+            <shopping-list *ngIf="loadedFeature !== 'recipe'" ></shopping-list>
         </div>
     </div>
 </div>

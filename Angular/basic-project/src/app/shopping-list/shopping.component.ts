@@ -12,6 +12,9 @@ export class ShoppingListComponent {
 
     constructor(){}
 
+    onIngredientsAdded(_ingredients: Ingredients){
+        this.ingredients.push(_ingredients);
+    }
 };
 
 const cocoa = new Ingredients('Cocoa', 10);
