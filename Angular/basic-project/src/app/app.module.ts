@@ -10,7 +10,8 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { FormsModule } from '@angular/forms';
-
+import { BasicDirective } from './directives/basic/basic.directive';
+import { Basic2Directive } from './directives/basic/basic-2.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,9 @@ import { FormsModule } from '@angular/forms';
     RecipeListComponent,
     RecipeDetailComponent,
     RecipeItemComponent,
-    ShoppingEditComponent
+    ShoppingEditComponent,
+    BasicDirective,
+    Basic2Directive
   ],
   imports: [
     BrowserModule,
