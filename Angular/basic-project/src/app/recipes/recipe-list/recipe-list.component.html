@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-xs-12">
         <!-- o @Input permite que o componente pai envie dados á uma propriedade específica [recipe]. -->
-        <app-recipe-item *ngFor="let recipe of recipes" [recipe_item]="recipe" (recipe_selected)="onRecipeSelected(recipe)"></app-recipe-item>
+        <app-recipe-item *ngFor="let recipe of recipes" [recipe_item]="recipe"></app-recipe-item>
         <!-- O app-recipe-item está sendo iterado com cada elemento e cada elemento esta enviando seus dados ao [recipe]. -->
     </div>
 </div>
