@@ -48,3 +48,19 @@ export class HomeComponent {
   }
 }
 
+
+Segmentos Dinãmicos [Parâmetros]
+→ {path: 'user/:id}, User} → O : caracteriza um segmento dinâmico.
+
+Capturando Segmentos Dinâmicos
+→ No componente do segmento dinâmico [User], injete a dependência _ActivatedRoute_ essa dependência nos dará acesso aos dados da URL que estarão em forma de objeto.
+
+Para capturar, existem duas maneiras, componentes fixos e componentes assíncronos. 
+
+Componentes Fixos: São componentes cujo URL é carregado uma única vez e não sofre atualizações após o seu load.
+Para estes casos, dentro do lifecycle hook [ngOnInit(){}]:
+→ this.propriedade.id = this.route.snapshot.params['id'];
+
+Componentes Assíncronos: são os componentes cujo URL é atualizado em diferentes estágios do componente corrente.
+Para estes casos, fora do lifecycle hook [ngOnInit(){}]:
+→ this.route.params.subscribe( (params: Params) => this.user.id = params['id'] );
