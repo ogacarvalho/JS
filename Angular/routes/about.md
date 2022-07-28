@@ -64,3 +64,44 @@ Para estes casos, dentro do lifecycle hook [ngOnInit(){}]:
 Componentes Assíncronos: são os componentes cujo URL é atualizado em diferentes estágios do componente corrente.
 Para estes casos, fora do lifecycle hook [ngOnInit(){}]:
 → this.route.params.subscribe( (params: Params) => this.user.id = params['id'] );
+
+!Unsubscribe, o angular faz isso automaticamente, mas quando não o fizer, você precisará realizar o unsubscribe manual, poderá usar a biblioteca rxjs/Subscription.
+→   ngOnDestroy(): void {
+    this.unsubscribe.unsubscribe();
+  }
+
+
+Parametros de Query (Enviando)
+ São parâmetros introduzidos na URL, podemos incluir diretamente no HTML:
+  →  <a
+        [routerLink]="['/servers', 5, 'edit']"
+        [queryParams]="{allowEdit: '1'}"
+        fragment="loading"
+        href="#"
+        class="list-group-item"
+        *ngFor="let server of servers">
+        {{ server.name }}
+      </a>
+ Ou podemos incluir através de métodos:
+  → metodoQualquer(id: number){
+    this.router.navigate(['/servers', id, 'edit'], { queryParams: { allowEdit: 1 }, fragment: 'loading' });
+  }
+
+Parametros de Query (Recebendo)
+ Como anteriormente, nós temos duas maneiras de capturar estes dados, a primeira é fixa e a segunda é assíncrona.
+
+  Fixa: Para quando o URL não sofrer atualizações após ser inicializado:
+  → Injetar dependência: constructor( private route: ActivatedRoute ){}
+  → this.route.snapshot.queryParams
+  → this.route.snapshot.framents
+
+  Assíncrona: Para URLS que serão atualizados em runtime.
+  → Inejtar dependência: constructor( private route: ActivatedRoute ){}
+  → this.route.queryParams.subscribe()
+  → this.route.fragment.subscribe()
+
+
+[Importante]:
+→ Lembre-se que ao carregar um URL dinâmicamente, o componente do angular deve ser excluído, caso contrário dará conflito.
+→ Sempre que puxar dados do URL você terá que converte-los para o tipo desejado, se for number pode usar + no ínicio.
+→ Ao capturar os dados de um URL e fazer as devidas implementações, lembre-se de faze-las para casos fixos e assíncronos.
